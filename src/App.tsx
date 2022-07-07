@@ -4,13 +4,13 @@ import Book from './components/Book/Book';
 import Input from './components/Input/Input';
 import './scss/app.scss';
 
-const API_KEY = 'AIzaSyD8ck4vCeuXZdhB9iK7ptRFjlL84y-7lJw';
+
 
 function App() {
-  const [books, setBooks] = React.useState<>();
+  const [books, setBooks] = React.useState();
   const fetchBooks = async () => {
     const res = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${API_KEY}`,
+      `https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${process.env.API_KEY}`,
     );
     setBooks(res.data.items);
   };
