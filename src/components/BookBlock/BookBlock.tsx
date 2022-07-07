@@ -1,9 +1,9 @@
 import React from 'react';
 import { TVolumeInfo } from '../../redux/searchedBooks/types';
 
-type BookProps = { id: string; volumeInfo: TVolumeInfo };
+type BookBlockProps = { volumeInfo: TVolumeInfo };
 
-function Book({ id, volumeInfo }: BookProps) {
+const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo }) => {
   const {
     authors,
     averageRating,
@@ -16,9 +16,9 @@ function Book({ id, volumeInfo }: BookProps) {
     publisher,
     subtitle,
     title,
-	} = volumeInfo;
-	
-  return <div>{title}</div>;
-}
+  } = volumeInfo;
 
-export default Book;
+  return <div>{title}</div>;
+};
+
+export default BookBlock;

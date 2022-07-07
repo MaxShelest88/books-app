@@ -19,7 +19,7 @@ const searchedBooksSlice = createSlice({
 	  });
 	   builder.addCase(fetchBooks.fulfilled, (state, action) => {
 		state.status = Status.SUCCESS
-      state.items = action.payload.items
+      state.items = action.payload
 		})
 	   builder.addCase(fetchBooks.rejected, (state) => {
 		state.status = Status.ERROR

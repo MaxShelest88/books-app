@@ -28,6 +28,12 @@ export type TSearchedBook = {
 	volumeInfo: TVolumeInfo
 }
 
+export type TData = {
+	kind: string
+	totalItems: number
+	items: TSearchedBook[]
+}
+
 export interface ISearchedBooksState {
 	items: TSearchedBook[]
 	status: Status
