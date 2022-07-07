@@ -10,7 +10,9 @@ const Input: React.FC = () => {
   const inpRef = useRef<HTMLInputElement>(null);
 
   const updateSearchValue = React.useCallback<(str: string) => void>(
-    debounce((str: string) => dispatch(setSearchValue(str)), 500),
+    debounce((str: string) => {
+      dispatch(setSearchValue(str));
+    }, 200),
     [],
   );
 
@@ -62,4 +64,3 @@ const Input: React.FC = () => {
 };
 
 export default Input;
-
