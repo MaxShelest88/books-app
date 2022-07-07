@@ -10,7 +10,7 @@ function App() {
   const [books, setBooks] = React.useState();
   const fetchBooks = async () => {
     const res = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${process.env.API_KEY}`,
+      `https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${process.env.REACT_APP_API_KEY}`,
     );
     setBooks(res.data.items);
   };
