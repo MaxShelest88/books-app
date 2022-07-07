@@ -3,6 +3,7 @@ import { fetchBooks } from './asyncactions';
 import { ISearchedBooksState, Status, TSearchedBook } from './types';
 
 const initialState: ISearchedBooksState = {
+	searchValue: '',
 	items: [],
 	status: Status.LOADING
 }

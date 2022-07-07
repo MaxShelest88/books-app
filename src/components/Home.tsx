@@ -31,7 +31,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <Input />
-      {uniqItems.map((item) => (
+      {uniqItems.map((item: TSearchedBook) => (
         <BookBlock {...item} key={item.id} />
       ))}
     </div>

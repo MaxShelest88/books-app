@@ -29,12 +29,13 @@ export type TSearchedBook = {
 }
 
 export type TData = {
-	kind: string
-	totalItems: number
-	items: TSearchedBook[]
+	kind: string;
+	totalItems: number;
+	items: TSearchedBook[];
 }
 
 export interface ISearchedBooksState {
-	items: TSearchedBook[]
-	status: Status
+	searchValue: string;
+	items: TSearchedBook[];
+	status: Status;
 }
