@@ -1,35 +1,16 @@
-import axios from 'axios';
 import React from 'react';
-import Book from './components/Book/Book';
+import { useSelector } from 'react-redux';
+import BookBlock from './components/BookBlock/BookBlock';
+import Home from './components/Home';
 import Input from './components/Input/Input';
+import { selectSearchedBooks } from './redux/searchedBooks/selectors';
+import { TSearchedBook } from './redux/searchedBooks/types';
 import './scss/app.scss';
 
-
-
 function App() {
-  const [books, setBooks] = React.useState();
-  const fetchBooks = async () => {
-    const res = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${process.env.REACT_APP_API_KEY}`,
-    );
-    setBooks(res.data.items);
-  };
-
-  React.useEffect(() => {
-    fetchBooks();
-    console.log(books);
-  }, []);
-
   return (
     <div className="App">
-      <Input />
-      {books &&
-        books
-          .reduce((uniq, item) => {
-            const uniqItem = uniq.find((uniqItem) => uniqItem.id === item.id);
-            return uniq.includes(uniqItem) ? uniq : [...uniq, item];
-          }, [])
-          .map((item) => <Book {...item} key={item.id} />)}
+      <Home />
     </div>
   );
 }
