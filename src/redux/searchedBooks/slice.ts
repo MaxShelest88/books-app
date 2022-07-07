@@ -11,7 +11,11 @@ const initialState: ISearchedBooksState = {
 const searchedBooksSlice = createSlice({
   name: 'searchedBooks',
   initialState,
-	reducers: {},
+	reducers: {
+		setSearchValue(state, action) {
+			state.searchValue = action.payload
+		}
+	},
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
 	  builder.addCase(fetchBooks.pending, (state) => {
@@ -29,6 +33,6 @@ const searchedBooksSlice = createSlice({
   },
 });
 
-export const {} = searchedBooksSlice.actions
+export const {setSearchValue} = searchedBooksSlice.actions
 
 export default searchedBooksSlice.reducer
