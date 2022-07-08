@@ -6,7 +6,6 @@ import { selectSearchedBooks } from '../../redux/searchedBooks/selectors';
 import { TSearchedBook } from '../../redux/searchedBooks/types';
 import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss'
-import { divide } from 'lodash';
 
 const Home: React.FC = () => {
   const { items, searchValue, status } = useSelector(selectSearchedBooks);

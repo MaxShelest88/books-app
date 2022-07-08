@@ -1,5 +1,6 @@
 .root {
 	position: relative;
+	max-width: 400px;
 }
 
 .icon {
@@ -13,13 +14,13 @@
 }
 
 .input {
-	border: 1px solid rgba($color: #000000, $alpha: 0.1);
+	border: 1px solid rgba($color: #3b3bf0, $alpha: 0.1);
 	padding: 8px 15px 8px 40px;
-	width: 400px;
+	width: 100%;
 	border-radius: 5px;
 	font-size: 16px;
 	&:focus {
-		border: 1px solid rgba($color: #000000, $alpha: 0.3);
+		border: 1px solid rgba($color: #3b3bf0, $alpha: 0.3);
 	}
 }
 

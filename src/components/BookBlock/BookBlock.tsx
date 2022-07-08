@@ -28,7 +28,7 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo }) => {
       </div>
       <div className={s.title}>{title}</div>
       {/* <div className={s.subtitle}>{subtitle}</div> */}
-		  <Button style ={{justifySelf:"center"}}>Добавить в избранное</Button>
+		  <Button style ={{justifySelf:"center"}}>В избранное</Button>
     </div>
   );
 };
