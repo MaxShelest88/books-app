@@ -4,9 +4,13 @@ import { TData } from './types';
 
 export const fetchBooks = createAsyncThunk(
   'serachedBooks/fetchBooks',
-  async () => {
+  async (searchValue: string) => {
     const {data} = await axios.get<TData>(
-      `https://www.googleapis.com/books/v1/volumes?q=harry+potter&key=${process.env.REACT_APP_API_KEY}`,
+		 `https://www.googleapis.com/books/v1/volumes`, {
+			 params: {
+				 q: searchValue,
+				 key: process.env.REACT_APP_API_KEY
+		 }}
 	  );
    	return data.items
   }

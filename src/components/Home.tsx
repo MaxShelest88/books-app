@@ -8,16 +8,12 @@ import BookBlock from './BookBlock/BookBlock';
 import Input from './Input/Input';
 
 const Home: React.FC = () => {
-  const { items } = useSelector(selectSearchedBooks);
+  const { items, searchValue } = useSelector(selectSearchedBooks);
   const dispatch = useAppDispatch();
 
-  const getSearchedBooks = () => {
-    dispatch(fetchBooks());
-  };
-
   React.useEffect(() => {
-    getSearchedBooks();
-  }, []);
+    dispatch(fetchBooks(searchValue));
+  }, [searchValue]);
 
   const uniqItems = items.reduce<TSearchedBook[]>((uniq, item) => {
     const uniqItem = uniq.find((obj) => obj.id === item.id);

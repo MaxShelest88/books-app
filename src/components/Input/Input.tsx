@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useAppDispatch } from '../../redux/hooks';
-import { debounce } from '../../utils/debounce';
+import _debounce from 'lodash/debounce';
 import styles from './Input.module.scss';
 import { setSearchValue } from '../../redux/searchedBooks/slice';
 
@@ -9,14 +9,13 @@ const Input: React.FC = () => {
   const dispatch = useAppDispatch();
   const inpRef = useRef<HTMLInputElement>(null);
 
-  const updateSearchValue = React.useCallback<(str: string) => void>(
-    debounce((str: string) => {
-      dispatch(setSearchValue(str));
-    }, 200),
+  const updateSearchValue = React.useCallback(
+    _debounce((str) => dispatch(setSearchValue(str)), 200),
     [],
   );
 
   const handleClear = () => {
+    inpRef.current?.focus();
     dispatch(setSearchValue(''));
     setValue('');
   };
