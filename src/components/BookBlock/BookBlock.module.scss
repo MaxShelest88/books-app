@@ -1,0 +1,37 @@
+.item {
+	display: grid;
+	/* grid-auto-flow: row; */ /* автоматически выстраивает объекты по вертикали, если это необходимо */
+	grid-template: 200px 1fr minmax(20px, auto) minmax(20px, auto) / 1fr; /* 1fr в рядах дает возможность при увеличении текста выравнивать дизайн */
+}
+
+.image {
+	margin: 0px 0px 10px 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	padding: 0 0 50% 0;
+	& img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.title {
+	font-size: 14px;
+	line-height: 18px;
+	margin: 0px 0px 10px 0px;
+	text-align: center;
+}
+
+.subtitle {
+	font-size: 10px;
+	line-height: 1rem;
+	margin: 0px 0px 20px 0px;
+	text-align: center;
+	overflow: hidden;
+}

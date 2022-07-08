@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch } from '../../../redux/hooks';
 import _debounce from 'lodash/debounce';
 import styles from './Input.module.scss';
-import { setSearchValue } from '../../redux/searchedBooks/slice';
+import { setSearchValue } from '../../../redux/searchedBooks/slice';
 
 const Input: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
@@ -15,7 +15,6 @@ const Input: React.FC = () => {
   );
 
   const handleClear = () => {
-    inpRef.current?.focus();
     dispatch(setSearchValue(''));
     setValue('');
   };
@@ -45,7 +44,7 @@ const Input: React.FC = () => {
         onChange={handleChange}
         className={styles.input}
         type="text"
-        placeholder="Поиск"
+        placeholder="Поиск книги"
       />
       {value && (
         <svg

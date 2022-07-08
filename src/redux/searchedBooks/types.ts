@@ -14,7 +14,9 @@ export type TVolumeInfo = {
   publishedDate: string;
   publisher: string;
   subtitle: string;
-  title: string;
+	title: string;
+	previewLink: string;
+	description: string;
 };
 
 export enum Status {

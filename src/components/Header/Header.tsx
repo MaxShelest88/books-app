@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '../Input/Input';
+import Input from '../UI/Input/Input';
 import s from './Header.module.scss'
 
 export default function Header() {
