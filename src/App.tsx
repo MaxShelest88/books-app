@@ -1,17 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import BookBlock from './components/BookBlock/BookBlock';
-import Home from './components/Home';
-import Input from './components/Input/Input';
-import { selectSearchedBooks } from './redux/searchedBooks/selectors';
-import { TSearchedBook } from './redux/searchedBooks/types';
+import Home from './pages/Home';
 import './scss/app.scss';
+import { Route, Routes } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route path='' element={<Home />} />
+      </Route>
+    </Routes>
   );
 }
 
