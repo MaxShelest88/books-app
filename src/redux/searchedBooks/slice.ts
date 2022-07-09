@@ -5,7 +5,7 @@ import { ISearchedBooksState, Status } from './types';
 const initialState: ISearchedBooksState = {
 	searchValue: '',
 	items: [],
-	status: Status.LOADING
+	status: Status.IDLE
 }
 
 const searchedBooksSlice = createSlice({

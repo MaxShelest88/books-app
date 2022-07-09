@@ -12,7 +12,9 @@ const Home: React.FC = () => {
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    dispatch(fetchBooks(searchValue));
+    if(searchValue){
+      dispatch(fetchBooks(searchValue));
+    }
   }, [searchValue]);
 
   const uniqItems = items.reduce<TSearchedBook[]>((uniq, item) => {
@@ -29,8 +31,20 @@ const Home: React.FC = () => {
   return (
     <section className="books">
       <div className="books__container container">
-        <div className={s.title}>Книги</div>
-        <div className={s.items}>{status === 'loading' ? <div>Загрузка</div> : books}</div>
+        {
+          status === "loading"
+            ?
+            <div>Загрузка</div>
+            :
+            <>
+              <div className={s.title}>Книги</div>
+              <div className={s.items}>{books}</div>
+            </>
+        }
+        {
+          status === "error" && <div>Что-то пошло не так</div>
+        }
+
       </div>
     </section>
   );
