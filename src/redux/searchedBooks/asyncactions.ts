@@ -3,7 +3,7 @@ import axios from 'axios';
 import { TData } from './types';
 
 export const fetchBooks = createAsyncThunk(
-  'serachedBooks/fetchBooks',
+  'searchedBooks/fetchBooks',
   async (searchValue: string) => {
     const {data} = await axios.get<TData>(
 		 `https://www.googleapis.com/books/v1/volumes`, {

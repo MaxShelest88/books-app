@@ -15,18 +15,19 @@ const Home: React.FC = () => {
     if(searchValue){
       dispatch(fetchBooks(searchValue));
     }
+    console.log(items)
   }, [searchValue]);
 
-  const uniqItems = items.reduce<TSearchedBook[]>((uniq, item) => {
+  const uniqItems = items?.length > 0 ? items.reduce<TSearchedBook[]>((uniq, item) => {
     const uniqItem = uniq.find((obj) => obj.id === item.id);
     if (uniqItem && uniq.includes(uniqItem)) {
       return uniq;
     } else {
       return [...uniq, item];
     }
-  }, []);
+  }, []) : []
 	
-	const books = uniqItems.map((item: TSearchedBook) => <BookBlock {...item} key={item.id} />);
+	const books = uniqItems?.map((item: TSearchedBook) => <BookBlock {...item} key={item.id} />);
 
   return (
     <section className="books">
@@ -38,7 +39,7 @@ const Home: React.FC = () => {
             :
             <>
               <div className={s.title}>Книги</div>
-              <div className={s.items}>{books}</div>
+              <div className={s.items}>{books.length > 0 ? books : <div>Книги не найдены</div>}</div>
             </>
         }
         {
