@@ -20,7 +20,6 @@ const Home: React.FC = () => {
       dispatch(setItems([]));
       dispatch(setStatus('idle'));
     }
-    console.log(items);
   }, [searchValue]);
 
   const uniqItems =
