@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useAppDispatch } from '../../../redux/hooks';
 import _debounce from 'lodash/debounce';
 import styles from './Input.module.scss';
-import { setSearchValue } from '../../../redux/searchedBooks/slice';
+import { setItems, setSearchValue, setStatus } from '../../../redux/searchedBooks/slice';
 
 const Input: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
@@ -16,6 +16,8 @@ const Input: React.FC = () => {
 
   const handleClear = () => {
     dispatch(setSearchValue(''));
+    dispatch(setItems([]));
+    dispatch(setStatus('idle'));
     setValue('');
   };
 

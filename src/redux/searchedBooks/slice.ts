@@ -14,7 +14,13 @@ const searchedBooksSlice = createSlice({
   reducers: {
     setSearchValue(state, action) {
       state.searchValue = action.payload
-    }
+	  },
+	  setItems(state, action) {
+		  state.items = action.payload
+	  },
+	  setStatus(state, action) {
+		  state.status = action.payload
+	  }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchBooks.pending, (state) => {
@@ -32,6 +38,6 @@ const searchedBooksSlice = createSlice({
   },
 });
 
-export const {setSearchValue} = searchedBooksSlice.actions
+export const {setSearchValue, setItems, setStatus} = searchedBooksSlice.actions
 
 export default searchedBooksSlice.reducer
