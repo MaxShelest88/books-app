@@ -9,7 +9,7 @@ import s from './Home.module.scss';
 import PageLoading from '../../components/UI/Loading/Loading';
 import { setItems, setStatus } from '../../redux/searchedBooks/slice';
 
-//TODO: 1.Фильты 2.Клик по книге - полное описание. 3. Добавить в избранное, 4. бесконечный скролл
+//TODO: 1.Фильты 2.Клик по книге - полное описание. 3. Добавить в избранное, 4. бесконечный скролл 5. Кнопка должна принимать иконку как пропс 6. Сделать компонент иконок
 
 const Home: React.FC = () => {
   const { items, searchValue, status } = useSelector(selectSearchedBooks);
@@ -18,9 +18,6 @@ const Home: React.FC = () => {
   React.useEffect(() => {
     if (searchValue) {
       dispatch(fetchBooks(searchValue));
-    } else {
-      dispatch(setItems([]));
-      dispatch(setStatus('idle'));
     }
   }, [searchValue]);
 
