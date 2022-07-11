@@ -1,10 +1,15 @@
 .items {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-template-columns: repeat(auto-fit, 150px);
 	gap: 20px;
 	grid-auto-rows: 1fr;
 }
 
 .title {
 	text-align: center;
+	margin-bottom: 40px;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 1rem;
+	letter-spacing: 0.1rem;
 }

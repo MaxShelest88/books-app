@@ -6,6 +6,7 @@ import { selectSearchedBooks } from '../../redux/searchedBooks/selectors';
 import { TSearchedBook } from '../../redux/searchedBooks/types';
 import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss';
+import PageLoading from '../../components/PageLoading/PageLoading';
 
 const Home: React.FC = () => {
   const { items, searchValue, status } = useSelector(selectSearchedBooks);
@@ -32,16 +33,16 @@ const Home: React.FC = () => {
 
   const books = uniqItems?.map((item: TSearchedBook) => <BookBlock {...item} key={item.id} />);
 
-  const renderBooks = (str: string) => {
+  const renderBooks = (status: string) => {
     switch (status) {
       case 'idle':
         return <div></div>;
       case 'loading':
-        return <div>Загрузка</div>;
+        return <PageLoading />;
       case 'success':
         return (
           <>
-            <div className={s.title}>Книги</div>
+            <div className={s.title}>Найденные книги</div>
             <div className={s.items}>{books.length > 0 ? books : <div>Книги не найдены</div>}</div>
           </>
         );
