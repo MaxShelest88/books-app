@@ -9,6 +9,8 @@ import s from './Home.module.scss';
 import PageLoading from '../../components/UI/Loading/Loading';
 import { setItems, setStatus } from '../../redux/searchedBooks/slice';
 
+//TODO: 1.Фильты 2.Клик по книге - полное описание. 3. Добавить в избранное, 4. бесконечный скролл
+
 const Home: React.FC = () => {
   const { items, searchValue, status } = useSelector(selectSearchedBooks);
   const dispatch = useAppDispatch();
