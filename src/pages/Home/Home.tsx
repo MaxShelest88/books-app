@@ -6,7 +6,7 @@ import { selectSearchedBooks } from '../../redux/searchedBooks/selectors';
 import { TSearchedBook } from '../../redux/searchedBooks/types';
 import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss';
-import PageLoading from '../../components/PageLoading/PageLoading';
+import PageLoading from '../../components/Loading/Loading';
 import { setItems, setStatus } from '../../redux/searchedBooks/slice';
 
 const Home: React.FC = () => {
