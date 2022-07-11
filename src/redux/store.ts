@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import searchedBooksReducer from './searchedBooks/slice'
+import favoriteBooksReducer from './favoriteBooks/slice'
 
 export const store = configureStore({
 	reducer: {
-	  searchedBooks: searchedBooksReducer,
+		searchedBooks: searchedBooksReducer,
+		favoriteBooks: favoriteBooksReducer
   },
 })
 
