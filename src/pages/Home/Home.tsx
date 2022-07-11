@@ -7,6 +7,7 @@ import { TSearchedBook } from '../../redux/searchedBooks/types';
 import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss';
 import PageLoading from '../../components/PageLoading/PageLoading';
+import { setItems, setStatus } from '../../redux/searchedBooks/slice';
 
 const Home: React.FC = () => {
   const { items, searchValue, status } = useSelector(selectSearchedBooks);
@@ -15,6 +16,9 @@ const Home: React.FC = () => {
   React.useEffect(() => {
     if (searchValue) {
       dispatch(fetchBooks(searchValue));
+    } else {
+      dispatch(setItems([]));
+      dispatch(setStatus('idle'));
     }
     console.log(items);
   }, [searchValue]);
