@@ -1,3 +1,5 @@
+@import "../../scss/variables";
+
 .root {
 	display: flex;
 	justify-content: center;
@@ -25,7 +27,7 @@
 	width: 6px;
 	height: 18px;
 	border-radius: 20%;
-	background: #3b3bf0;
+	background: $mainColor;
 }
 .spinner div:nth-child(1) {
 	transform: rotate(0deg);
