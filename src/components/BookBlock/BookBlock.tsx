@@ -70,8 +70,9 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id }) => {
             right: '10px',
             borderRadius: '50%',
             display: hovered ? 'block' : 'none',
+            zIndex: 5,
           }}>
-          <IconFavorite size="24" color={favored ? '#3b3bf0' : 'transparent'} />
+          <IconFavorite size="24" color={favored ? 'yellow' : 'transparent'} />
         </Button>
       </div>
       <div className={s.authors}>{authors?.join(' ')}</div>
