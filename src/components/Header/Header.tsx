@@ -17,7 +17,7 @@ export default function Header() {
           </div>
         </Link>
         <Input />
-        {pathname !== '/favorite' && <Link to="/favorite">Любимые книги</Link>}
+        {pathname !== '/favorite' && <Link to="/favorite" style={{color: 'black'}}>Избранные книги</Link>}
       </div>
     </header>
   );

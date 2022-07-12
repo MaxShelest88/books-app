@@ -8,7 +8,17 @@ import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss';
 import PageLoading from '../../components/UI/Loading/Loading';
 
-//TODO: 1.Фильты 2.Клик по книге - полное описание. 3. Добавить в избранное, 4. бесконечный скролл 5. Кнопка должна принимать иконку6. Сделать компонент иконок 7.Переделать хедер на грид
+/* 
+TODO:
+1.Фильты 
+2.Клик по книге - полное описание. 
+3. Добавить в избранное, 
+4. бесконечный скролл 
+5. Кнопка должна принимать иконку6. Сделать компонент иконок 
+7.Переделать хедер на грид 
+8. Если книга уже есть в избранных то показать звездочку. 8 добавление в локал сторэдж
+*/
+
 
 const Home: React.FC = () => {
   const { items, searchValue, status } = useSelector(selectSearchedBooks);
