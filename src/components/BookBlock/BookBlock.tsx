@@ -15,6 +15,10 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo }) => {
     setHovered(true);
   };
 
+  const handleLeave = () => {
+    setHovered(false);
+  };
+
   const {
     authors,
     averageRating,
@@ -31,19 +35,18 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo }) => {
   } = volumeInfo;
 
   return (
-    <div className={s.item}>
+    <div className={s.item} onMouseOver={handleHover} onMouseLeave={handleLeave}>
       <div className={s.image}>
         <img src={imageLinks ? imageLinks?.thumbnail : noCoverImage} alt="" />
         <Button
           style={{
             position: 'absolute',
-            top: '1rem',
-            right: '1rem',
+            top: '0px',
+            right: '0px',
             borderRadius: '50%',
-            background: '#D3D3D3',
-            padding: '3px',
+            display: hovered ? 'block' : 'none',
           }}>
-          <IconFavorite size="24" color="transparent" />
+          <IconFavorite size="50" color="transparent" />
         </Button>
       </div>
       <div className={s.authors}>{authors?.join(' ')}</div>
