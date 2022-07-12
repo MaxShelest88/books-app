@@ -1,11 +1,11 @@
  @import "../../../scss/variables";
  
  .button {
-	 padding: 5px 15px;
 	 color: black;
 	 font-size: 14px;
 	 background: transparent;
-	 border: 1px solid $mainColor;
 	 cursor: pointer;
 	 line-height: 20px;
+	 display: flex;
+	 justify-content:center;align-items: center;
  }

@@ -1,4 +1,5 @@
 .item {
+	position: relative;
 	display: grid;
 	padding: 5px 10px;
 	/* grid-auto-flow: row; */ /* автоматически выстраивает объекты по вертикали, если это необходимо */
@@ -26,6 +27,8 @@
 	padding: 0 0 160% 0;
 	transition: all 0.3s ease 0s;
 	cursor: pointer;
+	border-radius: 5px;
+	overflow: hidden;
 	
 	& img {
 		position: absolute;
