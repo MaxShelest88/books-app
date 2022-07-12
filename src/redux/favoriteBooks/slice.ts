@@ -1,15 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { IFavoriteBooksState } from './types';
 
-const initialState = {
+const initialState:IFavoriteBooksState = {
 	items: []
 }
 
 const favoriteBooksSlice = createSlice({
   name: "favoriteBooks",
   initialState,
-  reducers: {}
+	reducers: {
+		addItem(state, action) {
+			state.items = [...state.items, action.payload]
+		},
+		removeItem(state, action) {
+			state.items.filter(item => item.id !== action.payload)
+		}
+  }
 });
 
-export const {} = favoriteBooksSlice.actions
+export const {addItem,removeItem} = favoriteBooksSlice.actions
 
 export default favoriteBooksSlice.reducer
