@@ -8,9 +8,11 @@ type Props = {};
 function Favorite({}: Props) {
   const books = useAppSelector(selectFavoriteBooks);
   return (
-    <div>
-      {books && books.map((item) => <BookBlock volumeInfo={item} key={item.id} id={item.id} />)}
-    </div>
+    <section className="books">
+      <div className="books__container container">
+        {books && books.map((item) => <BookBlock volumeInfo={item} key={item.id} id={item.id} />)}
+      </div>
+    </section>
   );
 }
 
