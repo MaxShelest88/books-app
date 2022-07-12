@@ -1,13 +1,19 @@
 .item {
 	display: grid;
+	padding: 5px 10px;
 	/* grid-auto-flow: row; */ /* автоматически выстраивает объекты по вертикали, если это необходимо */
-	grid-template: auto minmax(20px, 35px) minmax(20px, 45px) minmax(20px, auto) / 1fr;
+	// grid-template: auto minmax(20px, 35px) minmax(20px, 45px) minmax(20px, auto) / 1fr;
+	grid-template: auto minmax(20px, 35px) minmax(20px, 45px)/ 1fr;
 	 /* 1fr в рядах дает возможность при увеличении текста выравнивать дизайн */
+
+	 border-radius: 5px;
+	 transition: all 0.3s ease 0s;
 	&:hover {
 		.image{
 			box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
 			transform: translate(0%,-10px);
 		}
+		background-color: rgba(0, 0, 0, 0.1);
 	}
 }
 
