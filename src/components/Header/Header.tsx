@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Input from '../UI/Input/Input';
 import s from './Header.module.scss';
 import { useLocation } from 'react-router-dom';
+import icon from '../../assets/icons/books-icon.png';
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -10,6 +11,11 @@ export default function Header() {
   return (
     <header className={s.header}>
       <div className={s.container}>
+        <Link to="/">
+          <div className={s.logo}>
+            <img className={s.logoimage} src={icon} alt="Logo" /> <span>My Books</span>
+          </div>
+        </Link>
         <Input />
         {pathname !== '/favorite' && <Link to="/favorite">Любимые книги</Link>}
       </div>
