@@ -7,7 +7,6 @@ import { TSearchedBook } from '../../redux/searchedBooks/types';
 import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss';
 import PageLoading from '../../components/UI/Loading/Loading';
-import { setItems, setStatus } from '../../redux/searchedBooks/slice';
 
 //TODO: 1.Фильты 2.Клик по книге - полное описание. 3. Добавить в избранное, 4. бесконечный скролл 5. Кнопка должна принимать иконку как пропс 6. Сделать компонент иконок
 
