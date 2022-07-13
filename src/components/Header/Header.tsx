@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Input from '../UI/Input/Input';
 import s from './Header.module.scss';
 import { useLocation } from 'react-router-dom';
-import icon from '../../assets/icons/books-icon.png';
+import icon from '../../assets/icons/Books-icon.png';
 
 export default function Header() {
   const { pathname } = useLocation();

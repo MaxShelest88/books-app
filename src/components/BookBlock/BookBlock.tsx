@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectFavoriteBooks } from '../../redux/favoriteBooks/selectors';
 import { addItem, removeItem } from '../../redux/favoriteBooks/slice';
+import { TFavoriteBook } from '../../redux/favoriteBooks/types';
 import { useAppDispatch } from '../../redux/hooks';
 import { TVolumeInfo } from '../../redux/searchedBooks/types';
 import Button from '../UI/Button/Button';
@@ -17,7 +18,7 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id, favorite }) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [favored, setFavored] = React.useState<boolean>(false);
   const favoriteBooks = useSelector(selectFavoriteBooks);
-  const favoriteBook = favoriteBooks.find((item) => item.id === id);
+  const favoriteBook = favoriteBooks.find((item:TFavoriteBook) => item.id === id);
 
   const handleHover = () => {
     setHovered(true);
