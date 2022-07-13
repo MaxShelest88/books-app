@@ -17,7 +17,7 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id, favorite }) => {
   const dispatch = useAppDispatch();
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [favored, setFavored] = React.useState<boolean>(false);
-  const favoriteBooks = useSelector(selectFavoriteBooks);
+  const favoriteBooks = useAppSelector(selectFavoriteBooks);
   const favoriteBook = favoriteBooks.find((item: TFavoriteBook) => item.id === id);
 
   const handleHover = () => {

@@ -7,7 +7,7 @@ import { useAppSelector } from '../../redux/hooks';
 import s from './Favorite.module.scss';
 
 function Favorite() {
-  const items = useSelector(selectFavoriteBooks);
+  const items = useAppSelector(selectFavoriteBooks);
 
   React.useEffect(() => {
     const json = JSON.stringify(items);
@@ -16,21 +16,19 @@ function Favorite() {
 
   return (
     <section className="books">
-		  <div className="books__container container">
-			  {items.length > 0
-				  ?
-				<>
-				  <div className={s.title}>Избранные книги</div>
-	        <div className={s.items}>
-	          {
-	            items.map((item: TFavoriteBook) => (
-	              <BookBlock volumeInfo={item} favorite={item.favorite} key={item.id} id={item.id} />
-	            ))
-	          }
-	        </div>
-				  </>
-				  :
-			<div>Пока что избранных книг нет...</div>}
+      <div className="books__container container">
+        {items.length > 0 ? (
+          <>
+            <div className={s.title}>Избранные книги</div>
+            <div className={s.items}>
+              {items.map((item: TFavoriteBook) => (
+                <BookBlock volumeInfo={item} favorite={item.favorite} key={item.id} id={item.id} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div>Пока что избранных книг нет...</div>
+        )}
       </div>
     </section>
   );
