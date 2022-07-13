@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectFavoriteBooks } from '../../redux/favoriteBooks/selectors';
 import { addItem, removeItem } from '../../redux/favoriteBooks/slice';
 import { TFavoriteBook } from '../../redux/favoriteBooks/types';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { TVolumeInfo } from '../../redux/searchedBooks/types';
 import Button from '../UI/Button/Button';
 import IconFavorite from '../UI/Icons/IconFavorite';
@@ -18,7 +18,7 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id, favorite }) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [favored, setFavored] = React.useState<boolean>(false);
   const favoriteBooks = useSelector(selectFavoriteBooks);
-  const favoriteBook = favoriteBooks.find((item:TFavoriteBook) => item.id === id);
+  const favoriteBook = favoriteBooks.find((item: TFavoriteBook) => item.id === id);
 
   const handleHover = () => {
     setHovered(true);
@@ -64,10 +64,12 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id, favorite }) => {
       dispatch(addItem(item));
     }
     if (favoriteBook) {
-		 dispatch(removeItem(id));
-		 setFavored(false)
+      dispatch(removeItem(id));
+      setFavored(false);
     }
   };
+
+
 
   return (
     <div className={s.item} onMouseOver={handleHover} onMouseLeave={handleLeave}>

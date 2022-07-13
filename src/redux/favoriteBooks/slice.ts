@@ -1,8 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getFavoriteFormLS } from '../../utils/getFavoriteFromLS';
 import { IFavoriteBooksState } from './types';
 
+const items  = getFavoriteFormLS();
+
 const initialState:IFavoriteBooksState = {
-	items: []
+	items,
 }
 
 const favoriteBooksSlice = createSlice({
@@ -11,9 +14,11 @@ const favoriteBooksSlice = createSlice({
 	reducers: {
 		addItem(state, action) {
 			state.items = [...state.items, { ...action.payload, favorite: true }]
+			
 		},
 		removeItem(state, action) {
-		state.items =	state.items.filter(item => item.id !== action.payload)
+			state.items = state.items.filter(item => item.id !== action.payload)
+			console.log(state.items);
 		}
   }
 });
