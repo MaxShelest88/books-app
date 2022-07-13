@@ -16,8 +16,6 @@ const Input: React.FC = () => {
 
   const handleClear = () => {
     dispatch(setSearchValue(''));
-    dispatch(setItems([]));
-    dispatch(setStatus('idle'));
     setValue('');
   };
 
