@@ -14,11 +14,9 @@ const favoriteBooksSlice = createSlice({
 	reducers: {
 		addItem(state, action) {
 			state.items = [...state.items, { ...action.payload, favorite: true }]
-			
 		},
 		removeItem(state, action) {
 			state.items = state.items.filter(item => item.id !== action.payload)
-			console.log(state.items);
 		}
   }
 });
