@@ -1,26 +1,24 @@
 @import "../../scss/variables";
 
 .header {
-  padding: 40px 0;
-  
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-	 @media (max-width: 768px) {
-		 flex-direction: column;
-	 }
-  }
-
+	.container {
+		min-height: 70px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
 }
-.logoimage{
+.logoimage {
 	width: 25px;
 }
 
 .logo {
 	display: flex;
 	align-items: center;
-	span{
+	span {
 		color: black;
 		font-weight: 700;
 	}

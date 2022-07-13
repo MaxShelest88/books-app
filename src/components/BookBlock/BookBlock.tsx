@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectFavoriteBooks } from '../../redux/favoriteBooks/selectors';
 import { addItem, removeItem } from '../../redux/favoriteBooks/slice';
 import { useAppDispatch } from '../../redux/hooks';
 import { TVolumeInfo } from '../../redux/searchedBooks/types';
@@ -8,12 +10,14 @@ import s from './BookBlock.module.scss';
 
 const noCoverImage = 'https://books.google.ru/googlebooks/images/no_cover_thumb.gif';
 
-type BookBlockProps = { volumeInfo: TVolumeInfo; id: string };
+type BookBlockProps = { volumeInfo: TVolumeInfo; id: string; favorite?: boolean };
 
-const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id }) => {
+const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id, favorite }) => {
   const dispatch = useAppDispatch();
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [favored, setFavored] = React.useState<boolean>(false);
+  const favoriteBooks = useSelector(selectFavoriteBooks);
+  const favoriteBook = favoriteBooks.find((item) => item.id === id);
 
   const handleHover = () => {
     setHovered(true);
@@ -55,7 +59,13 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id }) => {
       id,
     };
     setFavored((prevFavored) => !prevFavored);
-    dispatch(addItem(item));
+    if (!favoriteBook) {
+      dispatch(addItem(item));
+    }
+    if (favoriteBook) {
+		 dispatch(removeItem(id));
+		 setFavored(false)
+    }
   };
 
   return (
@@ -72,7 +82,10 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id }) => {
             display: hovered ? 'block' : 'none',
             zIndex: 5,
           }}>
-          <IconFavorite size="24" color={favored ? 'yellow' : 'transparent'} />
+          <IconFavorite
+            size="24"
+            color={favored || favorite || favoriteBook ? 'yellow' : 'transparent'}
+          />
         </Button>
       </div>
       <div className={s.authors}>{authors?.join(' ')}</div>

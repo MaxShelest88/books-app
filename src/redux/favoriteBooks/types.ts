@@ -15,6 +15,7 @@ export type TFavoriteBook = {
 	previewLink: string;
 	description: string;
 	id: string;
+	favorite: boolean;
 }
 
 export interface IFavoriteBooksState {

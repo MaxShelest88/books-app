@@ -10,10 +10,10 @@ const favoriteBooksSlice = createSlice({
   initialState,
 	reducers: {
 		addItem(state, action) {
-			state.items = [...state.items, action.payload]
+			state.items = [...state.items, { ...action.payload, favorite: true }]
 		},
 		removeItem(state, action) {
-			state.items.filter(item => item.id !== action.payload)
+		state.items =	state.items.filter(item => item.id !== action.payload)
 		}
   }
 });

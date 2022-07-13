@@ -16,8 +16,15 @@ export default function Header() {
             <img className={s.logoimage} src={icon} alt="Logo" /> <span>My Books</span>
           </div>
         </Link>
-        <Input />
-        {pathname !== '/favorite' && <Link to="/favorite" style={{color: 'black'}}>Избранные книги</Link>}
+
+        {pathname !== '/favorite' && (
+          <>
+            <Input />
+            <Link to="/favorite" style={{ color: 'black' }}>
+              Избранные книги
+            </Link>
+          </>
+        )}
       </div>
     </header>
   );
