@@ -42,4 +42,5 @@ export interface ISearchedBooksState {
 	searchValue: string;
 	items: TSearchedBook[];
 	status: Status;
+	totalItems: number
 }

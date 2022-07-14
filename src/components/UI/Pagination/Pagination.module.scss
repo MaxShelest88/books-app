@@ -1,0 +1,34 @@
+@import "../../../scss/variables";
+
+.root {
+	display: flex;
+	li {
+		&:not(:last-child) {
+			margin: 0px 2px 0px 0px;
+		}
+		a {
+			padding: 10px;
+			color: black;
+			font-size: 14px;
+			background: transparent;
+			cursor: pointer;
+			line-height: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid $mainColor;
+			border-radius: 2px;
+		}
+	}
+	:global {
+		.previous {
+		}
+
+		.selected {
+			a {
+				background-color: $mainColor;
+				color: #fff;
+			}
+		}
+	}
+}

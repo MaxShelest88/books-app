@@ -7,6 +7,7 @@ import { TSearchedBook } from '../../redux/searchedBooks/types';
 import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss';
 import PageLoading from '../../components/UI/Loading/Loading';
+import Pagination from '../../components/UI/Pagination/Pagination';
 
 /* 
 TODO:
@@ -14,7 +15,6 @@ TODO:
 2.Клик по книге - полное описание. 
 5. Кнопка должна принимать иконку6.
 7.Переделать хедер на грид 
-10. Типизировать Actions
 11. Сделать пагинацию и подгрузку при скролле
 12. Сделать футер
 13. Чанки
@@ -68,7 +68,10 @@ const Home: React.FC = () => {
 
   return (
     <section className="books">
-      <div className="books__container container">{renderBooks(status)}</div>
+      <div className="books__container container">
+        {renderBooks(status)}
+        <Pagination />
+      </div>
     </section>
   );
 };
