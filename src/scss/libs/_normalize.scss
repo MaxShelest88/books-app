@@ -1,3 +1,5 @@
+@import "../_variables";
+
 * {
 	padding: 0px;
 	margin: 0px;
@@ -31,7 +33,7 @@ html {
 
 body {
 	line-height: 1;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-family: $ff;
 	//text-rendering: optimizeLegibility;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
@@ -40,7 +42,7 @@ body {
 input,
 button,
 textarea {
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-family: $ff;
 	font-size: inherit;
 }
 input::-ms-clear {

@@ -19,6 +19,9 @@ TODO:
 12. Сделать футер
 13. Чанки
 14. lazyloading картинок
+15. storybook
+16. eslint
+17. компонент не найдено
 */
 
 const Home: React.FC = () => {
