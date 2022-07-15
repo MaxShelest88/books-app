@@ -5,7 +5,7 @@ import {ISearchedBooksState, Status} from './types';
 const initialState: ISearchedBooksState = {
   items: [],
 status: Status.IDLE,
-	searchValue:''
+	query:''
 }
 
 const booksSlice = createSlice({
@@ -19,7 +19,7 @@ const booksSlice = createSlice({
 		  state.status = action.payload
 	  },
 		setSearchValue(state, action) {
-      state.searchValue = action.payload
+      state.query = action.payload
 	  },
   },
   extraReducers: (builder) => {

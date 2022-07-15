@@ -41,7 +41,7 @@ export type TData = {
 export interface ISearchedBooksState {
 	items: TSearchedBook[];
 	status: Status;
-	searchValue: string;
+	query: string;
 }
 
 export type TFetchBooksArgs = {

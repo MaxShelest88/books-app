@@ -25,35 +25,33 @@ TODO:
 */
 
 const Home: React.FC = () => {
-  const {searchValue,  } = useAppSelector(selectBooks);
+  const { query } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
   const [maxResults, setMaxResults] = React.useState<number>(12);
-	const pageCurrent = useAppSelector(selectCurrentPage);
-	const [pageCount, setPageCount] = React.useState(0)
+  const pageCurrent = useAppSelector(selectCurrentPage);
+  const [pageCount, setPageCount] = React.useState(0);
 
   React.useEffect(() => {
-    if (searchValue) {
-		 dispatch(fetchBooks({ searchValue, maxResults, pageCurrent }));
+    if (query) {
+      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent }));
     }
-  }, [searchValue, maxResults, pageCurrent]);
+  }, [query, maxResults, pageCurrent]);
 
-//   const uniqItems =
-//     items?.length > 0
-//       ? items.reduce<TSearchedBook[]>((uniq, item) => {
-//           const uniqItem = uniq.find((obj) => obj.id === item.id);
-//           if (uniqItem && uniq.includes(uniqItem)) {
-//             return uniq;
-//           } else {
-//             return [...uniq, item];
-//           }
-//         }, [])
-//       : [];
+  //   const uniqItems =
+  //     items?.length > 0
+  //       ? items.reduce<TSearchedBook[]>((uniq, item) => {
+  //           const uniqItem = uniq.find((obj) => obj.id === item.id);
+  //           if (uniqItem && uniq.includes(uniqItem)) {
+  //             return uniq;
+  //           } else {
+  //             return [...uniq, item];
+  //           }
+  //         }, [])
+  //       : [];
 
   const onPageChange = (number: number) => {
     dispatch(setPage(number));
-	};
-	
-	
+  };
 
   return (
     <section className="books">
