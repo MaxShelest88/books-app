@@ -1,16 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss';
-import PageLoading from '../../components/UI/Loading/Loading';
 import Pagination from '../../components/UI/Pagination/Pagination';
 import { selectBooks } from '../../redux/books/selectors';
 import { fetchBooks } from '../../redux/books/asyncactions';
 import { TSearchedBook } from '../../redux/books/types';
 import { setPage } from '../../redux/filter/slice';
 import { selectCurrentPage } from '../../redux/filter/selectors';
-
+import BookItems from '../../components/BookItems/BookItems';
 
 /* 
 TODO:
@@ -28,62 +25,41 @@ TODO:
 */
 
 const Home: React.FC = () => {
-  const { items, status, searchValue } = useAppSelector(selectBooks);
+  const {searchValue,  } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
   const [maxResults, setMaxResults] = React.useState<number>(12);
-  const pageCurrent = useAppSelector(selectCurrentPage);
+	const pageCurrent = useAppSelector(selectCurrentPage);
+	const [pageCount, setPageCount] = React.useState(0)
 
   React.useEffect(() => {
     if (searchValue) {
-      dispatch(fetchBooks({ searchValue, maxResults, pageCurrent }));
+		 dispatch(fetchBooks({ searchValue, maxResults, pageCurrent }));
     }
   }, [searchValue, maxResults, pageCurrent]);
 
-  const uniqItems =
-    items?.length > 0
-      ? items.reduce<TSearchedBook[]>((uniq, item) => {
-          const uniqItem = uniq.find((obj) => obj.id === item.id);
-          if (uniqItem && uniq.includes(uniqItem)) {
-            return uniq;
-          } else {
-            return [...uniq, item];
-          }
-        }, [])
-      : [];
-
-  const books = uniqItems?.map((item: TSearchedBook) => <BookBlock {...item} key={item.id} />);
-
-  const onChangePage = (num: number) => {
-    dispatch(setPage(num));
-  };
-
-  const renderBooks = (status: string) => {
-    switch (status) {
-      case 'idle':
-        return <div></div>;
-      case 'loading':
-        return <PageLoading />;
-      case 'success':
-        return (
-          <>
-            <div className={s.title}>Найденные книги</div>
-            <div className={s.items}>{books.length > 0 ? books : <div>Книги не найдены</div>}</div>
-          </>
-        );
-      case 'error':
-        return <div>Что-то пошло не так</div>;
-    }
-  };
+//   const uniqItems =
+//     items?.length > 0
+//       ? items.reduce<TSearchedBook[]>((uniq, item) => {
+//           const uniqItem = uniq.find((obj) => obj.id === item.id);
+//           if (uniqItem && uniq.includes(uniqItem)) {
+//             return uniq;
+//           } else {
+//             return [...uniq, item];
+//           }
+//         }, [])
+//       : [];
 
   const onPageChange = (number: number) => {
     dispatch(setPage(number));
-  };
+	};
+	
+	
 
   return (
     <section className="books">
       <div className="books__container container">
-        {renderBooks(status)}
-        <Pagination onChangePage={onChangePage} pageCount={10} />
+        <BookItems />
+        <Pagination onPageChange={onPageChange} pageCount={pageCount} />
       </div>
     </section>
   );

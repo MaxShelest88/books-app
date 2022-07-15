@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import BookBlock from '../../components/BookBlock/BookBlock';
+import BookItem from '../../components/BookItem/BookItem';
 import { selectFavoriteBooks } from '../../redux/favorite/selectors';
 import { TFavoriteBook } from '../../redux/favorite/types';
 import { useAppSelector } from '../../redux/hooks';
@@ -22,7 +22,7 @@ function Favorite() {
             <div className={s.title}>Избранные книги</div>
             <div className={s.items}>
               {items.map((item: TFavoriteBook) => (
-                <BookBlock volumeInfo={item} favorite={item.favorite} key={item.id} id={item.id} />
+                <BookItem volumeInfo={item} favorite={item.favorite} key={item.id} id={item.id} />
               ))}
             </div>
           </>

@@ -7,13 +7,13 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { TVolumeInfo } from '../../redux/books/types';
 import Button from '../UI/Button/Button';
 import IconFavorite from '../UI/Icons/IconFavorite';
-import s from './BookBlock.module.scss';
+import s from './BookItem.module.scss';
 
 const noCoverImage = 'https://books.google.ru/googlebooks/images/no_cover_thumb.gif';
 
-type BookBlockProps = { volumeInfo: TVolumeInfo; id: string; favorite?: boolean };
+type BookItemProps = { volumeInfo: TVolumeInfo; id: string; favorite?: boolean };
 
-const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id, favorite }) => {
+const BookItem: React.FC<BookItemProps> = ({ volumeInfo, id, favorite }) => {
   const dispatch = useAppDispatch();
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [favored, setFavored] = React.useState<boolean>(false);
@@ -69,8 +69,6 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id, favorite }) => {
     }
   };
 
-
-
   return (
     <div className={s.item} onMouseOver={handleHover} onMouseLeave={handleLeave}>
       <div className={s.image}>
@@ -97,4 +95,4 @@ const BookBlock: React.FC<BookBlockProps> = ({ volumeInfo, id, favorite }) => {
   );
 };
 
-export default BookBlock;
+export default BookItem;
