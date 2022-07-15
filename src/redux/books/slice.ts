@@ -32,7 +32,7 @@ const searchedBooksSlice = createSlice({
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
       state.status = Status.SUCCESS
 		 state.items = action.payload.items
-		 state.totalItems = action.payload.totalItems
+		 state.totalItems =  action.payload.totalItems
     })
     builder.addCase(fetchBooks.rejected, (state) => {
       state.status = Status.ERROR

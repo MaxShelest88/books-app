@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import BookBlock from '../../components/BookBlock/BookBlock';
-import { selectFavoriteBooks } from '../../redux/favoriteBooks/selectors';
-import { TFavoriteBook } from '../../redux/favoriteBooks/types';
+import { selectFavoriteBooks } from '../../redux/favorite/selectors';
+import { TFavoriteBook } from '../../redux/favorite/types';
 import { useAppSelector } from '../../redux/hooks';
 import s from './Favorite.module.scss';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectFavoriteBooks } from '../../redux/favoriteBooks/selectors';
-import { addItem, removeItem } from '../../redux/favoriteBooks/slice';
-import { TFavoriteBook } from '../../redux/favoriteBooks/types';
+import { selectFavoriteBooks } from '../../redux/favorite/selectors';
+import { addItem, removeItem } from '../../redux/favorite/slice';
+import { TFavoriteBook } from '../../redux/favorite/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { TVolumeInfo } from '../../redux/searchedBooks/types';
+import { TVolumeInfo } from '../../redux/books/types';
 import Button from '../UI/Button/Button';
 import IconFavorite from '../UI/Icons/IconFavorite';
 import s from './BookBlock.module.scss';

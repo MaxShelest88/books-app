@@ -1,13 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../redux/hooks';
-import { fetchBooks } from '../../redux/searchedBooks/asyncactions';
-import { selectSearchedBooks } from '../../redux/searchedBooks/selectors';
-import { TSearchedBook } from '../../redux/searchedBooks/types';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { fetchBooks } from '../../redux/books/asyncactions';
+import { selectSearchedBooks } from '../../redux/books/selectors';
+import { TSearchedBook } from '../../redux/books/types';
 import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss';
 import PageLoading from '../../components/UI/Loading/Loading';
 import Pagination from '../../components/UI/Pagination/Pagination';
+import { selectCurrentPage } from '../../redux/filter/selectors';
+import { setPage } from '../../redux/filter/slice';
 
 /* 
 TODO:
@@ -27,12 +29,14 @@ TODO:
 const Home: React.FC = () => {
   const { items, searchValue, status } = useSelector(selectSearchedBooks);
   const dispatch = useAppDispatch();
+  const [maxResults, setMaxResults] = React.useState<number>(12);
+  const pageCurrent = useAppSelector(selectCurrentPage);
 
   React.useEffect(() => {
     if (searchValue) {
-      dispatch(fetchBooks(searchValue));
+      dispatch(fetchBooks({ searchValue, maxResults, pageCurrent }));
     }
-  }, [searchValue]);
+  }, [searchValue, maxResults, pageCurrent]);
 
   const uniqItems =
     items?.length > 0
@@ -47,6 +51,10 @@ const Home: React.FC = () => {
       : [];
 
   const books = uniqItems?.map((item: TSearchedBook) => <BookBlock {...item} key={item.id} />);
+
+  const onChangePage = (num: number) => {
+    dispatch(setPage(num));
+  };
 
   const renderBooks = (status: string) => {
     switch (status) {
@@ -70,7 +78,7 @@ const Home: React.FC = () => {
     <section className="books">
       <div className="books__container container">
         {renderBooks(status)}
-        <Pagination />
+        <Pagination onChangePage={onChangePage} pageCount={10} />
       </div>
     </section>
   );
