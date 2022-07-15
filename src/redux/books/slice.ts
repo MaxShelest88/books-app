@@ -3,25 +3,29 @@ import {fetchBooks} from './asyncactions';
 import {ISearchedBooksState, Status} from './types';
 
 const initialState: ISearchedBooksState = {
-  searchValue: '',
   items: [],
 status: Status.IDLE,
-  totalItems: 0
+	totalItems: 0,
+	currentPage: 0,
+	searchValue:''
 }
 
-const searchedBooksSlice = createSlice({
-  name: 'searchedBooks',
+const booksSlice = createSlice({
+  name: 'books',
   initialState,
   reducers: {
-    setSearchValue(state, action) {
-      state.searchValue = action.payload
-	  },
 	  setItems(state, action) {
 		  state.items = action.payload
 	  },
 	  setStatus(state, action) {
 		  state.status = action.payload
-	  }
+	  },
+	  setPage(state, action) {
+			state.currentPage = action.payload
+		},
+		setSearchValue(state, action) {
+      state.searchValue = action.payload
+	  },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchBooks.pending, (state) => {
@@ -42,6 +46,6 @@ const searchedBooksSlice = createSlice({
   },
 });
 
-export const {setSearchValue, setItems, setStatus} = searchedBooksSlice.actions
+export const { setItems, setStatus, setPage, setSearchValue} = booksSlice.actions
 
-export default searchedBooksSlice.reducer
+export default booksSlice.reducer

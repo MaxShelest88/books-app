@@ -8,7 +8,7 @@ const initialState:IFavoriteBooksState = {
 	items,
 }
 
-const favoriteBooksSlice = createSlice({
+const favoriteSlice = createSlice({
   name: "favoriteBooks",
   initialState,
 	reducers: {
@@ -21,6 +21,6 @@ const favoriteBooksSlice = createSlice({
   }
 });
 
-export const {addItem,removeItem} = favoriteBooksSlice.actions
+export const {addItem,removeItem} = favoriteSlice.actions
 
-export default favoriteBooksSlice.reducer
+export default favoriteSlice.reducer
