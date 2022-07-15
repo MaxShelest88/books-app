@@ -1,4 +1,4 @@
-import { TImageLinks } from "../searchedBooks/types";
+import { TImageLinks } from "../books/types";
 
 export type TFavoriteBook = {
   authors: string[];

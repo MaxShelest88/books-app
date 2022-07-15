@@ -1,13 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../redux/hooks';
-import { fetchBooks } from '../../redux/searchedBooks/asyncactions';
-import { selectSearchedBooks } from '../../redux/searchedBooks/selectors';
-import { TSearchedBook } from '../../redux/searchedBooks/types';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import BookBlock from '../../components/BookBlock/BookBlock';
 import s from './Home.module.scss';
 import PageLoading from '../../components/UI/Loading/Loading';
 import Pagination from '../../components/UI/Pagination/Pagination';
+import { selectBooks } from '../../redux/books/selectors';
+import { fetchBooks } from '../../redux/books/asyncactions';
+import { TSearchedBook } from '../../redux/books/types';
+import { setPage } from '../../redux/books/slice';
+
 
 /* 
 TODO:
@@ -25,14 +27,17 @@ TODO:
 */
 
 const Home: React.FC = () => {
-  const { items, searchValue, status } = useSelector(selectSearchedBooks);
+  const { items, status, totalItems, searchValue, currentPage } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
+  const [limit, setLimit] = React.useState<number>(12);
+  const [pageCount, setPageCount] = React.useState<number>(0);
 
   React.useEffect(() => {
     if (searchValue) {
-      dispatch(fetchBooks(searchValue));
+      dispatch(fetchBooks({ searchValue, currentPage, limit }));
+      setPageCount(Math.ceil(totalItems / limit));
     }
-  }, [searchValue]);
+  }, [searchValue, currentPage]);
 
   const uniqItems =
     items?.length > 0
@@ -66,11 +71,15 @@ const Home: React.FC = () => {
     }
   };
 
+  const onPageChange = (number: number) => {
+    dispatch(setPage(number));
+  };
+
   return (
     <section className="books">
       <div className="books__container container">
         {renderBooks(status)}
-        <Pagination />
+        <Pagination onPageChange={onPageChange} pageCount={pageCount} />
       </div>
     </section>
   );

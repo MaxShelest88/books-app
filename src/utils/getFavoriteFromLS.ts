@@ -1,4 +1,4 @@
-import { TFavoriteBook } from "../redux/favoriteBooks/types";
+import { TFavoriteBook } from "../redux/favorite/types";
 
 export const getFavoriteFormLS = () => {
 		const data = localStorage.getItem('favoriteBooks')
