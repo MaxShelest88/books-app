@@ -1,3 +1,3 @@
 import { RootState } from "../store";
 
-export const selectSearchedBooks = (state: RootState) => state.books
+export const selectBooks = (state: RootState) => state.books

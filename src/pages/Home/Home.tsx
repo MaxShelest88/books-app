@@ -8,7 +8,8 @@ import Pagination from '../../components/UI/Pagination/Pagination';
 import { selectBooks } from '../../redux/books/selectors';
 import { fetchBooks } from '../../redux/books/asyncactions';
 import { TSearchedBook } from '../../redux/books/types';
-import { setPage } from '../../redux/books/slice';
+import { setPage } from '../../redux/filter/slice';
+import { selectCurrentPage } from '../../redux/filter/selectors';
 
 
 /* 
@@ -27,7 +28,7 @@ TODO:
 */
 
 const Home: React.FC = () => {
-  const { items, status, totalItems, searchValue, currentPage } = useAppSelector(selectBooks);
+  const { items, status, searchValue } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
   const [maxResults, setMaxResults] = React.useState<number>(12);
   const pageCurrent = useAppSelector(selectCurrentPage);
@@ -82,11 +83,7 @@ const Home: React.FC = () => {
     <section className="books">
       <div className="books__container container">
         {renderBooks(status)}
-<<<<<<< HEAD
         <Pagination onChangePage={onChangePage} pageCount={10} />
-=======
-        <Pagination onPageChange={onPageChange} pageCount={pageCount} />
->>>>>>> 80ec3fdd4b32ab843914adc3a82155b13112212d
       </div>
     </section>
   );

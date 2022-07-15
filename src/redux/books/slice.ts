@@ -6,7 +6,6 @@ const initialState: ISearchedBooksState = {
   items: [],
 status: Status.IDLE,
 	totalItems: 0,
-	currentPage: 0,
 	searchValue:''
 }
 
@@ -20,9 +19,6 @@ const booksSlice = createSlice({
 	  setStatus(state, action) {
 		  state.status = action.payload
 	  },
-	  setPage(state, action) {
-			state.currentPage = action.payload
-		},
 		setSearchValue(state, action) {
       state.searchValue = action.payload
 	  },
@@ -46,6 +42,6 @@ const booksSlice = createSlice({
   },
 });
 
-export const { setItems, setStatus, setPage, setSearchValue} = booksSlice.actions
+export const { setItems, setStatus, setSearchValue} = booksSlice.actions
 
 export default booksSlice.reducer

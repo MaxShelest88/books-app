@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { fetchBooks } from '../../../redux/books/asyncactions';
-import { selectSearchedBooks } from '../../../redux/books/selectors';
 import s from './Pagination.module.scss';
 
 type Props = { onChangePage: (num: number) => void; pageCount: number };
