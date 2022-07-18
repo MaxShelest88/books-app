@@ -25,18 +25,18 @@ TODO:
 */
 
 const Home: React.FC = () => {
-  const { query, totalItems } = useAppSelector(selectBooks);
+  const { query, totalItems, pageCount } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
   const [maxResults, setMaxResults] = React.useState<number>(12);
   const pageCurrent = useAppSelector(selectCurrentPage);
-  const [pageCount, setPageCount] = React.useState<number>(0);
+
 
   React.useEffect(() => {
     if (query) {
-      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent }));
+		 dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent }));
 	  }
-	  setPageCount(Math.ceil(totalItems / maxResults));
-  }, [query, maxResults, pageCurrent, totalItems]);
+	  
+  }, [query, maxResults, pageCurrent]);
 
   //   const uniqItems =
   //     items?.length > 0

@@ -10,7 +10,7 @@ type Props = {};
 
 function BookItems({}: Props) {
   const { items, status } = useAppSelector(selectBooks);
-  const books = items.map((item: TSearchedBook) => <BookItem {...item} key={item.id} />);
+  const books = items?.map((item: TSearchedBook) => <BookItem {...item} key={item.id} />);
 
   const renderBooks = (status: string) => {
     switch (status) {
@@ -22,7 +22,7 @@ function BookItems({}: Props) {
         return (
           <>
             <div className={s.title}>Найденные книги</div>
-            <div className={s.items}>{books.length > 0 ? books : <div>Книги не найдены</div>}</div>
+            <div className={s.items}>{books ? books : <div>Книги не найдены</div>}</div>
           </>
         );
       case 'error':

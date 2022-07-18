@@ -14,7 +14,7 @@ function Pagination({ onPageChange, pageCount }: Props) {
       pageRangeDisplayed={10}
       pageCount={pageCount}
       previousLabel="<"
-      // renderOnZeroPageCount={null}
+      renderOnZeroPageCount={null}
     />
   );
 }

@@ -7,7 +7,9 @@ const initialState: ISearchedBooksState = {
   items: [],
 status: Status.IDLE,
 	query: '',
-	totalItems: 0
+	totalItems: 0,
+	maxResults: 12,
+	pageCount: 0
 }
 
 const booksSlice = createSlice({
@@ -23,6 +25,9 @@ const booksSlice = createSlice({
 		setSearchValue(state, action) {
       state.query = action.payload
 	  },
+	  setMaxResults(state, action) {
+		  state.maxResults = action.payload
+		}
   },
   extraReducers: (builder) => {
     builder.addCase(fetchBooks.pending, (state) => {
@@ -33,10 +38,12 @@ const booksSlice = createSlice({
       state.status = Status.SUCCESS
 		 state.items = action.payload.items
 		 state.totalItems = action.payload.totalItems
+		 state.pageCount = Math.ceil(action.payload.totalItems / state.maxResults)
     })
     builder.addCase(fetchBooks.rejected, (state) => {
       state.status = Status.ERROR
 		 state.items = []
+		 state.totalItems = 0
     })
   },
 });
