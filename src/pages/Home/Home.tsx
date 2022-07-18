@@ -34,7 +34,7 @@ const Home: React.FC = () => {
     if (query) {
       dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption }));
     }
-  }, [query, maxResults, pageCurrent]);
+  }, [query, maxResults, pageCurrent, queryOption]);
 
   //   const uniqItems =
   //     items?.length > 0

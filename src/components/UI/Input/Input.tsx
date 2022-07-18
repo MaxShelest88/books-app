@@ -4,7 +4,11 @@ import _debounce from 'lodash/debounce';
 import styles from './Input.module.scss';
 import { setItems, setSearchValue, setStatus } from '../../../redux/books/slice';
 
-const Input: React.FC = () => {
+type InputProps = {
+  [x: string]: any;
+};
+
+const Input: React.FC = ({ ...props }: InputProps) => {
   const [value, setValue] = React.useState<string>('');
   const dispatch = useAppDispatch();
   const inpRef = useRef<HTMLInputElement>(null);
@@ -24,7 +28,7 @@ const Input: React.FC = () => {
   };
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} {...props}>
       <svg
         className={styles.icon}
         enableBackground="new 0 0 32 32"

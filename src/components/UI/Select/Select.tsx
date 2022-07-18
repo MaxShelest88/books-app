@@ -1,18 +1,16 @@
 import React from 'react';
-import { setQueryOption } from '../../../redux/filter/slice';
+import { TOption } from '../../../models/UIComponents';
 import { useAppDispatch } from '../../../redux/hooks';
 
-type Props = {};
+type Props = { options: TOption []};
 
-const Select = ({ options, defaultValue, value }: Props) => {
-  const dispatch = useAppDispatch();
-
+const Select = ({ options }: Props) => {
   const optionValues = options.map((option, index) => (
     <option value={option.value} key={index}>
       {option.name}
     </option>
   ));
-  return <select onChange={(e) => dispatch(setQueryOption(e.target.value))}>{optionValues}</select>;
+  return <select onChange={() => {}}>{optionValues}</select>;
 };
 
 export default Select;
