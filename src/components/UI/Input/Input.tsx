@@ -15,7 +15,6 @@ const Input: React.FC = () => {
   );
 
   const handleClear = () => {
-   dispatch(setSearchValue(''));
     setValue('');
   };
 

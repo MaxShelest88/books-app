@@ -11,10 +11,10 @@ function Pagination({ onPageChange, pageCount }: Props) {
       breakLabel="..."
       nextLabel=">"
       onPageChange={(e) => onPageChange(e.selected)}
-      pageRangeDisplayed={10}
+      pageRangeDisplayed={3}
       pageCount={pageCount}
       previousLabel="<"
-      renderOnZeroPageCount={null}
+      renderOnZeroPageCount={() => null}
     />
   );
 }

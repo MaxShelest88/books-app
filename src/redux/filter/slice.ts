@@ -4,6 +4,7 @@ import { IFilterState } from './types';
 
 const initialState:IFilterState = {
 	currentPage: 0,
+	
 }
 
 const filterSlice = createSlice({
