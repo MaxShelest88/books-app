@@ -6,7 +6,7 @@ import { selectBooks } from '../../redux/books/selectors';
 import { fetchBooks } from '../../redux/books/asyncactions';
 import { TSearchedBook } from '../../redux/books/types';
 import { setPage } from '../../redux/filter/slice';
-import { selectCurrentPage } from '../../redux/filter/selectors';
+import { selectCurrentPage, selectQueryOption } from '../../redux/filter/selectors';
 import BookItems from '../../components/BookItems/BookItems';
 
 /* 
@@ -25,17 +25,15 @@ TODO:
 */
 
 const Home: React.FC = () => {
-  const { query, totalItems, pageCount } = useAppSelector(selectBooks);
+  const { query, totalItems, pageCount, maxResults } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
-  const [maxResults, setMaxResults] = React.useState<number>(12);
   const pageCurrent = useAppSelector(selectCurrentPage);
-
+  const queryOption = useAppSelector(selectQueryOption);
 
   React.useEffect(() => {
     if (query) {
-		 dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent }));
-	  }
-	  
+      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption }));
+    }
   }, [query, maxResults, pageCurrent]);
 
   //   const uniqItems =

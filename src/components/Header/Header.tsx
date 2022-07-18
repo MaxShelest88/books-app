@@ -4,6 +4,7 @@ import Input from '../UI/Input/Input';
 import s from './Header.module.scss';
 import { useLocation } from 'react-router-dom';
 import icon from '../../assets/icons/Books-icon.png';
+import Select from '../UI/Select/Select';
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -19,7 +20,13 @@ export default function Header() {
 
         {pathname !== '/favorite' && (
           <>
-            <Input />
+            <div>
+            	<Input />
+						  <Select options={[
+							  { name: 'По автору', value: 'inauthor' },
+							  { name: 'По названию', value: 'intitle' },
+						  ]} />
+            </div>
             <Link to="/favorite" style={{ color: 'black' }}>
               Избранные книги
             </Link>
