@@ -6,11 +6,11 @@ type Props = {
   option: TOption;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   queryOption: string;
-  name: string;
+	name: string;
   [x: string]: any;
 };
 
-const InputRadio = ({ option, onChange, queryOption, name, ...props }: Props) => {
+const InputRadio: React.FC <Props> = ({ option, onChange, queryOption, name, ...props }) => {
   return (
     <label className={s.radio} htmlFor={option.value} {...props}>
       <input

@@ -8,7 +8,7 @@ type InputProps = {
   [x: string]: any;
 };
 
-const Input: React.FC = ({ ...props }: InputProps) => {
+const Input: React.FC<InputProps> = ({ ...props }) => {
   const [value, setValue] = React.useState<string>('');
   const dispatch = useAppDispatch();
   const inpRef = useRef<HTMLInputElement>(null);
