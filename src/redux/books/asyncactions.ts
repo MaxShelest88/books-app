@@ -9,12 +9,14 @@ export const fetchBooks = createAsyncThunk<TData, TFetchBooksArgs>(
     const {data} = await axios.get<TData>(
 		 `https://www.googleapis.com/books/v1/volumes`, {
 			 params: {
-				 q: searchValue,
+				 q: `intitle:${searchValue}`,
 				 key: process.env.REACT_APP_API_KEY,
 				 startIndex: pageCurrent * maxResults,
-				 maxResults: maxResults
+				 maxResults: maxResults,
+				 printType: 'books'
 		 }}
-	  );
-   	return data
+		);
+		
+		return data
   }
 )

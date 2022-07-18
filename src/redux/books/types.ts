@@ -32,16 +32,20 @@ export type TSearchedBook = {
 	volumeInfo: TVolumeInfo
 }
 
+export type data = {
+	items: TSearchedBook[]
+}
+
 export type TData = {
-	kind: string;
-	totalItems: number;
 	items: TSearchedBook[];
+	totalItems: number
 }
 
 export interface ISearchedBooksState {
 	items: TSearchedBook[];
 	status: Status;
 	query: string;
+	totalItems: number
 }
 
 export type TFetchBooksArgs = {
