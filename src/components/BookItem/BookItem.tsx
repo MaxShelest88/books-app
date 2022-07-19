@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { selectFavoriteBooks } from '../../redux/favorite/selectors';
 import { addItem, removeItem } from '../../redux/favorite/slice';
 import { TFavoriteBook } from '../../redux/favorite/types';
