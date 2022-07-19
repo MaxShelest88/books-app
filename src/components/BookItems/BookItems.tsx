@@ -4,7 +4,6 @@ import { TSearchedBook } from '../../redux/books/types';
 import { useAppSelector } from '../../redux/hooks';
 import BookItem from '../BookItem/BookItem';
 import BookSkeleton from '../BookItem/BookSkeleton';
-import PageLoading from '../UI/Loading/Loading';
 import s from './BookItems.module.scss';
 
 type Props = {};
