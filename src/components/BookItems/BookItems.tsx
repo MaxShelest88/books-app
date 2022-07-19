@@ -17,7 +17,7 @@ function BookItems({}: Props) {
   const renderBooks = (status: string) => {
     switch (status) {
       case 'idle':
-        return <div></div>;
+        return <></>;
       case 'loading':
 			 return (
          <>
@@ -36,7 +36,7 @@ function BookItems({}: Props) {
         return <div>Что-то пошло не так</div>;
     }
   };
-  return <div>{renderBooks(status)}</div>;
+  return <>{renderBooks(status)}</>;
 }
 
 export default BookItems;
