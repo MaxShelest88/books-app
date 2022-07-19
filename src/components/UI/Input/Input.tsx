@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useAppDispatch } from '../../../redux/hooks';
 import _debounce from 'lodash/debounce';
-import styles from './Input.module.scss';
+import s from './Input.module.scss';
 import { setSearchValue } from '../../../redux/books/slice';
 
 type InputProps = {
@@ -29,9 +29,9 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
   };
 
   return (
-    <div className={styles.root} {...props}>
+    <div className={s.root} {...props}>
       <svg
-        className={styles.icon}
+        className={s.icon}
         enableBackground="new 0 0 32 32"
         id="Glyph"
         version="1.1"
@@ -46,14 +46,14 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
         ref={inpRef}
         value={value}
         onChange={handleChange}
-        className={styles.input}
+        className={s.input}
         type="text"
         placeholder="Поиск книги"
       />
       {value && (
         <svg
           onClick={handleClear}
-          className={styles.clear}
+          className={s.clear}
           height="512px"
           viewBox="0 0 512 512"
           width="512px"

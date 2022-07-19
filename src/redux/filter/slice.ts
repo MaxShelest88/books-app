@@ -6,7 +6,6 @@ const initialState:IFilterState = {
 	currentPage: 0,
 	queryOption: 'intitle',
 	sort: 'relevance',        
-	
 }
 
 const filterSlice = createSlice({
