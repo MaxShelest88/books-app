@@ -55,4 +55,5 @@ export type TFetchBooksArgs = {
 	pageCurrent: number;
 	maxResults: number;
 	queryOption: string;
+	sort: string;
 }

@@ -1,4 +1,6 @@
 export interface IFilterState {
 	currentPage: number,
-	queryOption: string
+	queryOption: string,
+	sort: string,        
+
 }

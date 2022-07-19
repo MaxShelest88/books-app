@@ -4,7 +4,9 @@ import { IFilterState } from './types';
 
 const initialState:IFilterState = {
 	currentPage: 0,
-	queryOption: 'intitle'
+	queryOption: 'intitle',
+	sort: 'relevance',        
+	
 }
 
 const filterSlice = createSlice({
@@ -16,10 +18,13 @@ const filterSlice = createSlice({
 		},
 		setQueryOption(state, action) {
 			state.queryOption = action.payload
+		},
+		setSort(state, action) {
+			state.sort = action.payload
 		}
   },
 });
 
-export const {setPage,setQueryOption} = filterSlice.actions
+export const {setPage,setQueryOption,setSort} = filterSlice.actions
 
 export default filterSlice.reducer

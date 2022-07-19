@@ -5,7 +5,7 @@ import Pagination from '../../components/UI/Pagination/Pagination';
 import { selectBooks } from '../../redux/books/selectors';
 import { fetchBooks } from '../../redux/books/asyncactions';
 import { setPage } from '../../redux/filter/slice';
-import { selectCurrentPage, selectQueryOption } from '../../redux/filter/selectors';
+import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
 import BookItems from '../../components/BookItems/BookItems';
 
 /* 
@@ -25,12 +25,13 @@ const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const pageCurrent = useAppSelector(selectCurrentPage);
   const queryOption = useAppSelector(selectQueryOption);
+  const sort = useAppSelector(selectSort);
 
   React.useEffect(() => {
     if (query) {
-      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption }));
+      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
     }
-  }, [query, maxResults, pageCurrent, queryOption]);
+  }, [query, maxResults, pageCurrent, queryOption, sort]);
 
   //   const uniqItems =
   //     items?.length > 0
