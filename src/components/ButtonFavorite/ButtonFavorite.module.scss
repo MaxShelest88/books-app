@@ -1,0 +1,19 @@
+@import "../../scss/variables";
+
+.buttonFav {
+	color: black;
+	background: transparent;
+	cursor: pointer;
+	line-height: 20px;
+	color: #fff;
+	padding: 10px 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $mainColor;
+	border-radius: 5px;
+	span {
+		margin-right: 2px;
+	}
+}
+
