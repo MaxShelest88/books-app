@@ -18,6 +18,7 @@ TODO:
 15. storybook
 16. eslint
 17. компонент не найдено
+18. Оптимизация memo
 */
 
 const Home: React.FC = () => {
