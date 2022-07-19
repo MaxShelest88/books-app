@@ -18,7 +18,8 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
     [],
   );
 
-  const handleClear = () => {
+	const handleClear = () => {
+	  dispatch(setSearchValue(''));
     setValue('');
   };
 
