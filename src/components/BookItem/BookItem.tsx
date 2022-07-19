@@ -91,7 +91,7 @@ const BookItem: React.FC<BookItemProps> = ({ volumeInfo, id, favorite }) => {
         <div className={s.cover}>
           <p>Издательство: {publisher ? publisher : '-'}</p>
           <p>Год издания: {publishedDate ? publishedDate.slice(0, 4) : '-'}</p>
-          <p>Жанры: {categories ? categories : '-'}</p>
+          <p>Жанры: {categories ? categories.join(',') : '-'}</p>
           <p>Количество страниц: {pageCount ? pageCount : '-'}</p>
         </div>
       </div>
