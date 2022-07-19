@@ -2,28 +2,26 @@
 @import "_variables";
 @import url(https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext);
 
+
 .wrapper {
-	width: calc(100vw - 100px);
-	height: 100%;
-	background-color: #fff;
-	margin: 0px auto;
-	border-radius: 10px;
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	margin: 0 auto;
 	max-width: 1400px;
+	display: flex;
+	flex-direction: column;
 	@media (max-width: 650px) {
 		width: calc(100vw - 15px);
 		margin: 15px auto;
 	}
 }
 
+.content {
+	flex: 1 1 auto;
+}
+
 .container {
 	width: $container-width;
 	margin: 0 auto;
-
-	&--cart {
-		max-width: 820px;
-		margin: 90px auto;
-		.content__title {
-			margin: 0;
-		}
-	}
 }
