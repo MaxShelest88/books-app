@@ -5,6 +5,7 @@ import { TSearchedBook } from '../../redux/books/types';
 import { selectSort } from '../../redux/filter/selectors';
 import { setSort } from '../../redux/filter/slice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { uniqItems } from '../../utils/uniqItems';
 import BookItem from '../BookItem/BookItem';
 import BookSkeleton from '../BookItem/BookSkeleton';
 import Select from '../UI/Select/Select';
@@ -13,8 +14,10 @@ import s from './BookItems.module.scss';
 type Props = {};
 
 function BookItems({}: Props) {
-  const { items, status } = useAppSelector(selectBooks);
-  const books = items?.map((item: TSearchedBook) => <BookItem {...item} key={item.id} />);
+	const { items, status } = useAppSelector(selectBooks);
+	const uniq = uniqItems(items);
+	const books = uniq?.map((item: TSearchedBook) => <BookItem {...item} key={item.id} />);
+	
   const skeleton = [...new Array(12)].map((_, i) => <BookSkeleton key={i} />);
   const dispatch = useAppDispatch();
   const sortValue = useAppSelector(selectSort);
@@ -47,7 +50,7 @@ function BookItems({}: Props) {
                   ]}
                   onChange={handleChangeSport}
                 />
-                <Select
+                {/* <Select
                   value={String(maxResults)}
                   defaultValue="Книг на странице"
                   options={[
@@ -55,7 +58,7 @@ function BookItems({}: Props) {
                     { name: '24', value: '24' },
                   ]}
                   onChange={handleChangeMaxResults}
-                />
+                /> */}
               </div>
             </div>
             <div className={s.items}>{skeleton}</div>

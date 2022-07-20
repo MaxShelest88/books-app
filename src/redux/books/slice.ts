@@ -36,8 +36,8 @@ const booksSlice = createSlice({
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
       state.status = Status.SUCCESS
 		 state.items = action.payload.items
-		 state.totalItems = action.payload.totalItems
-		 state.pageCount = Math.ceil(action.payload.totalItems / state.maxResults)
+		 state.totalItems = state.totalItems === 0 ? action.payload.totalItems : state.totalItems
+		 state.pageCount = Math.ceil(state.totalItems / state.maxResults)
     })
     builder.addCase(fetchBooks.rejected, (state) => {
       state.status = Status.ERROR

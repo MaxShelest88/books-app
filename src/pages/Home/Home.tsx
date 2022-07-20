@@ -12,7 +12,6 @@ import { setMaxResults, setSearchValue } from '../../redux/books/slice';
 
 /* 
 TODO:
-1.Фильты 
 2.Клик по книге - полное описание. 
 7.Переделать хедер на грид 
 13. Чанки
@@ -20,6 +19,7 @@ TODO:
 16. eslint
 17. компонент не найдено
 18. Оптимизация memo
+19. доделать количество книг на странице и отображение
 */
 
 const Home: React.FC = () => {
@@ -29,9 +29,10 @@ const Home: React.FC = () => {
   const queryOption = useAppSelector(selectQueryOption);
   const sort = useAppSelector(selectSort);
   const [search, setSearch] = useSearchParams();
+  const isMounted = React.useRef(false);
 
   React.useEffect(() => {
-    if (query) {
+    if (query && isMounted.current) {
       dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
       setSearch({
         q: `${queryOption}:${query}`,
@@ -41,32 +42,32 @@ const Home: React.FC = () => {
         orderBy: sort,
       });
     }
+    isMounted.current = true;
   }, [query, maxResults, pageCurrent, queryOption, sort]);
 
-  React.useEffect(() => {
-    if (window.location.search) {
-      const colonIndex = search.get('q')?.indexOf(':');
-      const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
-      const queryOption = String(search.get('q')?.slice(0, colonIndex));
-      const startIndex = Number(search.get('startIndex'));
-      const maxResults = Number(search.get('maxResults'));
-      const sort = String(search.get('orderBy'));
-      console.log(maxResults);
-
-      dispatch(
-        fetchBooks({
-          searchValue,
-          maxResults,
-          queryOption,
-          sort,
-        }),
-      );
-      dispatch(setSort(sort));
-      dispatch(setSearchValue(searchValue));
-      dispatch(setPage(startIndex / maxResults));
-      dispatch(setMaxResults(maxResults));
-    }
-  }, []);
+  //   React.useEffect(() => {
+  //     if (window.location.search && !isMounted.current) {
+  //       const colonIndex = search.get('q')?.indexOf(':');
+  //       const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
+  //       const queryOption = String(search.get('q')?.slice(0, colonIndex));
+  //       const startIndex = Number(search.get('startIndex'));
+  //       const maxResults = Number(search.get('maxResults'));
+  //       const sort = String(search.get('orderBy'));
+  //       console.log(maxResults);
+  //       dispatch(
+  //         fetchBooks({
+  //           searchValue,
+  //           maxResults,
+  //           queryOption,
+  //           sort,
+  //         }),
+  //       );
+  //       dispatch(setSort(sort));
+  //       dispatch(setSearchValue(searchValue));
+  //       dispatch(setPage(startIndex / maxResults));
+  //       dispatch(setMaxResults(maxResults));
+  //     }
+  //   }, []);
 
   const onPageChange = React.useCallback((number: number) => {
     dispatch(setPage(number));
