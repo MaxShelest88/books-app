@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit'
-import { act } from 'react-dom/test-utils';
 import {fetchBooks} from './asyncactions';
 import {ISearchedBooksState, Status} from './types';
 

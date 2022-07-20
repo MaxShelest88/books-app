@@ -8,6 +8,7 @@ import { setPage } from '../../redux/filter/slice';
 import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
 import BookItems from '../../components/BookItems/BookItems';
 import { useSearchParams } from 'react-router-dom';
+import { setSearchValue } from '../../redux/books/slice';
 
 /* 
 TODO:
@@ -42,15 +43,38 @@ const Home: React.FC = () => {
     }
   }, [query, maxResults, pageCurrent, queryOption, sort]);
 
-  const onPageChange = (number: number) => {
+  React.useEffect(() => {
+    if (window.location.search) {
+      const colonIndex = search.get('q')?.indexOf(':');
+      const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
+      const queryOption = String(search.get('q')?.slice(0, colonIndex));
+      const startIndex = Number(search.get('startIndex'));
+      const maxResults = Number(search.get('maxResults'));
+      const sort = String(search.get('orderBy'));
+
+      dispatch(
+        fetchBooks({
+          searchValue,
+          maxResults,
+          queryOption,
+          sort,
+        }),
+      );
+      dispatch(setSearchValue(searchValue));
+      dispatch(setPage(startIndex / maxResults));
+      console.log(search.get('startIndex'));
+    }
+  }, []);
+
+  const onPageChange = React.useCallback((number: number) => {
     dispatch(setPage(number));
-  };
+  }, []);
 
   return (
     <section className="books">
       <div className="books__container container">
         <BookItems />
-        <Pagination onPageChange={onPageChange} pageCount={pageCount} />
+        <Pagination onPageChange={onPageChange} pageCount={pageCount} pageCurrent={pageCurrent} />
       </div>
     </section>
   );

@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-import { useAppDispatch } from '../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import _debounce from 'lodash/debounce';
 import s from './Input.module.scss';
 import { setSearchValue } from '../../../redux/books/slice';
+import { selectBooks } from '../../../redux/books/selectors';
 
 type InputProps = {
   [x: string]: any;
@@ -10,6 +11,7 @@ type InputProps = {
 
 const Input: React.FC<InputProps> = ({ ...props }) => {
   const [value, setValue] = React.useState<string>('');
+  const { query } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
   const inpRef = useRef<HTMLInputElement>(null);
 
@@ -18,8 +20,14 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
     [],
   );
 
-	const handleClear = () => {
-	  dispatch(setSearchValue(''));
+  React.useEffect(() => {
+    if (query) {
+      setValue(query);
+    }
+  });
+
+  const handleClear = () => {
+    dispatch(setSearchValue(''));
     setValue('');
   };
 

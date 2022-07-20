@@ -11,7 +11,7 @@ export const fetchBooks = createAsyncThunk<TData, TFetchBooksArgs>(
 			 params: {
 				 q: `${queryOption}:${searchValue}`,
 				 key: process.env.REACT_APP_API_KEY,
-				 startIndex: pageCurrent * maxResults,
+				 startIndex:  pageCurrent && maxResults && pageCurrent * maxResults,
 				 maxResults: maxResults,
 				 printType: 'books',
 				 orderBy: sort
