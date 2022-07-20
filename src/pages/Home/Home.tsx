@@ -4,7 +4,7 @@ import s from './Home.module.scss';
 import Pagination from '../../components/UI/Pagination/Pagination';
 import { selectBooks } from '../../redux/books/selectors';
 import { fetchBooks } from '../../redux/books/asyncactions';
-import { setPage } from '../../redux/filter/slice';
+import { setPage, setSort } from '../../redux/filter/slice';
 import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
 import BookItems from '../../components/BookItems/BookItems';
 import { useSearchParams } from 'react-router-dom';
@@ -59,7 +59,8 @@ const Home: React.FC = () => {
           queryOption,
           sort,
         }),
-      );
+		 );
+		dispatch(setSort(sort));
       dispatch(setSearchValue(searchValue));
       dispatch(setPage(startIndex / maxResults));
       console.log(search.get('startIndex'));
