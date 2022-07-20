@@ -7,13 +7,13 @@ import { fetchBooks } from '../../redux/books/asyncactions';
 import { setPage } from '../../redux/filter/slice';
 import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
 import BookItems from '../../components/BookItems/BookItems';
+import { useSearchParams } from 'react-router-dom';
 
 /* 
 TODO:
 1.Фильты 
 2.Клик по книге - полное описание. 
 7.Переделать хедер на грид 
-9. добавить параметры поиска в адресную строку
 13. Чанки
 15. storybook
 16. eslint
@@ -27,24 +27,20 @@ const Home: React.FC = () => {
   const pageCurrent = useAppSelector(selectCurrentPage);
   const queryOption = useAppSelector(selectQueryOption);
   const sort = useAppSelector(selectSort);
+  const [search, setSearch] = useSearchParams();
 
   React.useEffect(() => {
     if (query) {
       dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
+      setSearch({
+        q: `${queryOption}:${query}`,
+        startIndex: String(pageCurrent * maxResults),
+        maxResults: String(maxResults),
+        printType: 'books',
+        orderBy: sort,
+      });
     }
   }, [query, maxResults, pageCurrent, queryOption, sort]);
-
-  //   const uniqItems =
-  //     items?.length > 0
-  //       ? items.reduce<TSearchedBook[]>((uniq, item) => {
-  //           const uniqItem = uniq.find((obj) => obj.id === item.id);
-  //           if (uniqItem && uniq.includes(uniqItem)) {
-  //             return uniq;
-  //           } else {
-  //             return [...uniq, item];
-  //           }
-  //         }, [])
-  //       : [];
 
   const onPageChange = (number: number) => {
     dispatch(setPage(number));
