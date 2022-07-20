@@ -8,7 +8,7 @@ import { setPage, setSort } from '../../redux/filter/slice';
 import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
 import BookItems from '../../components/BookItems/BookItems';
 import { useSearchParams } from 'react-router-dom';
-import { setSearchValue } from '../../redux/books/slice';
+import { setMaxResults, setSearchValue } from '../../redux/books/slice';
 
 /* 
 TODO:
@@ -51,6 +51,7 @@ const Home: React.FC = () => {
       const startIndex = Number(search.get('startIndex'));
       const maxResults = Number(search.get('maxResults'));
       const sort = String(search.get('orderBy'));
+      console.log(maxResults);
 
       dispatch(
         fetchBooks({
@@ -59,11 +60,11 @@ const Home: React.FC = () => {
           queryOption,
           sort,
         }),
-		 );
-		dispatch(setSort(sort));
+      );
+      dispatch(setSort(sort));
       dispatch(setSearchValue(searchValue));
       dispatch(setPage(startIndex / maxResults));
-      console.log(search.get('startIndex'));
+      dispatch(setMaxResults(maxResults));
     }
   }, []);
 

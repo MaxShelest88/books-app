@@ -1,5 +1,6 @@
 import React from 'react';
 import { selectBooks } from '../../redux/books/selectors';
+import { setMaxResults } from '../../redux/books/slice';
 import { TSearchedBook } from '../../redux/books/types';
 import { selectSort } from '../../redux/filter/selectors';
 import { setSort } from '../../redux/filter/slice';
@@ -17,11 +18,15 @@ function BookItems({}: Props) {
   const skeleton = [...new Array(12)].map((_, i) => <BookSkeleton key={i} />);
   const dispatch = useAppDispatch();
   const sortValue = useAppSelector(selectSort);
+  const { maxResults } = useAppSelector(selectBooks);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
+  const handleChangeSport = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setSort(e.target.value));
-  };
+  },[]);
+
+  const handleChangeMaxResults = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setMaxResults(e.target.value));
+  },[]);
 
   const renderBooks = (status: string) => {
     switch (status) {
@@ -40,7 +45,16 @@ function BookItems({}: Props) {
                     { name: 'Релевантности', value: 'relevance' },
                     { name: 'Самые новые', value: 'newest' },
                   ]}
-                  onChange={handleChange}
+                  onChange={handleChangeSport}
+                />
+                <Select
+                  value={String(maxResults)}
+                  defaultValue="Книг на странице"
+                  options={[
+                    { name: '12', value: '12' },
+                    { name: '24', value: '24' },
+                  ]}
+                  onChange={handleChangeMaxResults}
                 />
               </div>
             </div>
@@ -60,7 +74,16 @@ function BookItems({}: Props) {
                     { name: 'Релевантности', value: 'relevance' },
                     { name: 'Самые новые', value: 'newest' },
                   ]}
-                  onChange={handleChange}
+                  onChange={handleChangeSport}
+                />
+                <Select
+                  value={String(maxResults)}
+                  defaultValue="Книг на странице"
+                  options={[
+                    { name: '12', value: '12' },
+                    { name: '24', value: '24' },
+                  ]}
+                  onChange={handleChangeMaxResults}
                 />
               </div>
             </div>

@@ -47,6 +47,6 @@ const booksSlice = createSlice({
   },
 });
 
-export const { setItems, setStatus, setSearchValue} = booksSlice.actions
+export const { setItems, setStatus, setSearchValue, setMaxResults} = booksSlice.actions
 
 export default booksSlice.reducer

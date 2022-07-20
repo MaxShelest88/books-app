@@ -24,7 +24,7 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
     if (query) {
       setValue(query);
     }
-  });
+  }, []);
 
   const handleClear = () => {
     dispatch(setSearchValue(''));
