@@ -33,7 +33,6 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
   }, []);
 
   const handleChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setPage(0));
     updateSearchValue(e.target.value);
     setValue(e.target.value);
   }, []);
