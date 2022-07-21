@@ -46,7 +46,8 @@ const Home: React.FC = () => {
   }, [query, maxResults, pageCurrent, queryOption, sort]);
 
   React.useEffect(() => {
-    if (window.location.search && !isMounted.current) {
+    if (window.location.search) {
+      console.log(window.location.search);
       const colonIndex = search.get('q')?.indexOf(':');
       const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
       const queryOption = String(search.get('q')?.slice(0, colonIndex));
@@ -67,6 +68,7 @@ const Home: React.FC = () => {
       dispatch(setPage(startIndex / maxResults));
       dispatch(setMaxResults(maxResults));
     }
+    isMounted.current = true;
   }, []);
 
   const onPageChange = React.useCallback((number: number) => {
