@@ -8,7 +8,7 @@ import { setPage, setSort } from '../../redux/filter/slice';
 import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
 import BookItems from '../../components/BookItems/BookItems';
 import { useSearchParams } from 'react-router-dom';
-import { setMaxResults, setSearchValue } from '../../redux/books/slice';
+import { setMaxResults, setSearchValue, setTotalItems } from '../../redux/books/slice';
 import NotFound from '../../components/NotFound/NotFound';
 
 /* 
@@ -74,22 +74,14 @@ const Home: React.FC = () => {
   }, []);
 
   {
-    if (items) {
-      return (
-        <section className="books">
-          <div className="books__container container">
-            <BookItems />
-            <Pagination
-              onPageChange={onPageChange}
-              pageCount={pageCount}
-              pageCurrent={pageCurrent}
-            />
-          </div>
-        </section>
-      );
-    } else {
-      return <NotFound />;
-    }
+    return (
+      <section className="books">
+        <div className="books__container container">
+          {items ? <BookItems /> : <NotFound />}
+          <Pagination onPageChange={onPageChange} pageCount={pageCount} pageCurrent={pageCurrent} />
+        </div>
+      </section>
+    );
   }
 };
 
