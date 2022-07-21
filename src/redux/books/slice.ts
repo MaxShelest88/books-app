@@ -3,8 +3,8 @@ import {fetchBooks} from './asyncactions';
 import {ISearchedBooksState, Status} from './types';
 
 const initialState: ISearchedBooksState = {
-  items: [],
-status: Status.IDLE,
+  	items: [],
+	status: Status.IDLE,
 	query: '',
 	totalItems: 0,
 	maxResults: 12,
@@ -32,6 +32,7 @@ const booksSlice = createSlice({
     builder.addCase(fetchBooks.pending, (state) => {
       state.status = Status.LOADING
 		 state.items = []
+		 state.totalItems = 0
     });
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
       state.status = Status.SUCCESS

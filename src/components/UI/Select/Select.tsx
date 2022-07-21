@@ -1,6 +1,5 @@
 import React from 'react';
-import { TOption } from '../../../models/UIComponents';
-import { useAppDispatch } from '../../../redux/hooks';
+import { TOption } from '../InputRadio/InputRadio';
 
 type Props = {
   options: TOption[];

@@ -1,6 +1,10 @@
 import React from 'react';
-import { TOption } from '../../../models/UIComponents';
 import s from './InputRadio.module.scss';
+
+export type TOption = {
+  value: string;
+  name: string;
+};
 
 type Props = {
   option: TOption;

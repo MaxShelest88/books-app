@@ -85,6 +85,7 @@ function BookItems({}: Props) {
                   defaultValue="Книг на странице"
                   options={[
                     { name: '12', value: '12' },
+                    { name: '18', value: '18' },
                     { name: '24', value: '24' },
                   ]}
                   onChange={handleChangeMaxResults}
