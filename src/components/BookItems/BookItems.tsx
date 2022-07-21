@@ -91,7 +91,7 @@ function BookItems({}: Props) {
                 />
               </div>
             </div>
-            <div className={s.items}>{books ? books : <div>Книги не найдены</div>}</div>
+            <div className={s.items}>{books}</div>
           </>
         );
       case 'error':

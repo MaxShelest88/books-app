@@ -36,7 +36,7 @@ export default function Header() {
 
   return (
     <header className={s.header}>
-      <div className={s.container}>
+      <div className={`${s.container} container`}>
         <Link to="/">
           <Logo />
         </Link>

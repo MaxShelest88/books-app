@@ -9,6 +9,7 @@ import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/fi
 import BookItems from '../../components/BookItems/BookItems';
 import { useSearchParams } from 'react-router-dom';
 import { setMaxResults, setSearchValue } from '../../redux/books/slice';
+import NotFound from '../../components/NotFound/NotFound';
 
 /* 
 TODO:
@@ -19,11 +20,10 @@ TODO:
 16. eslint
 17. компонент не найдено
 18. Оптимизация memo
-19. доделать количество книг на странице и отображение
 */
 
 const Home: React.FC = () => {
-  const { query, pageCount, maxResults } = useAppSelector(selectBooks);
+  const { query, pageCount, maxResults, items } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
   const pageCurrent = useAppSelector(selectCurrentPage);
   const queryOption = useAppSelector(selectQueryOption);
@@ -45,42 +45,52 @@ const Home: React.FC = () => {
     isMounted.current = true;
   }, [query, maxResults, pageCurrent, queryOption, sort]);
 
-    React.useEffect(() => {
-      if (window.location.search && !isMounted.current) {
-        const colonIndex = search.get('q')?.indexOf(':');
-        const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
-        const queryOption = String(search.get('q')?.slice(0, colonIndex));
-        const startIndex = Number(search.get('startIndex'));
-        const maxResults = Number(search.get('maxResults'));
-        const sort = String(search.get('orderBy'));
-        console.log(maxResults);
-        dispatch(
-          fetchBooks({
-            searchValue,
-            maxResults,
-            queryOption,
-            sort,
-          }),
-        );
-        dispatch(setSort(sort));
-        dispatch(setSearchValue(searchValue));
-        dispatch(setPage(startIndex / maxResults));
-        dispatch(setMaxResults(maxResults));
-      }
-    }, []);
+  React.useEffect(() => {
+    if (window.location.search && !isMounted.current) {
+      const colonIndex = search.get('q')?.indexOf(':');
+      const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
+      const queryOption = String(search.get('q')?.slice(0, colonIndex));
+      const startIndex = Number(search.get('startIndex'));
+      const maxResults = Number(search.get('maxResults'));
+      const sort = String(search.get('orderBy'));
+      console.log(maxResults);
+      dispatch(
+        fetchBooks({
+          searchValue,
+          maxResults,
+          queryOption,
+          sort,
+        }),
+      );
+      dispatch(setSort(sort));
+      dispatch(setSearchValue(searchValue));
+      dispatch(setPage(startIndex / maxResults));
+      dispatch(setMaxResults(maxResults));
+    }
+  }, []);
 
   const onPageChange = React.useCallback((number: number) => {
     dispatch(setPage(number));
   }, []);
 
-  return (
-    <section className="books">
-      <div className="books__container container">
-        <BookItems />
-        <Pagination onPageChange={onPageChange} pageCount={pageCount} pageCurrent={pageCurrent} />
-      </div>
-    </section>
-  );
+  {
+    if (items) {
+      return (
+        <section className="books">
+          <div className="books__container container">
+            <BookItems />
+            <Pagination
+              onPageChange={onPageChange}
+              pageCount={pageCount}
+              pageCurrent={pageCurrent}
+            />
+          </div>
+        </section>
+      );
+    } else {
+      return <NotFound />;
+    }
+  }
 };
 
 export default Home;
