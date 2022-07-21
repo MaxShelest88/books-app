@@ -2,7 +2,7 @@ import React from 'react';
 import { selectFavoriteBooks } from '../../redux/favorite/selectors';
 import { useAppSelector } from '../../redux/hooks';
 import IconFavorite from '../UI/Icons/IconFavorite';
-import s from './ButtonFavorite.module.scss';
+import s from './Favorite.module.scss';
 
 type Props = {};
 
@@ -10,7 +10,7 @@ const ButtonFavorite = (props: Props) => {
   const favItems = useAppSelector(selectFavoriteBooks);
 
   return (
-    <button className={s.buttonFav}>
+    <div className={s.buttonFav}>
       <span style={{ position: 'relative', zIndex: 10 }}>Избранное</span>
       <span style={{ position: 'relative' }}>
         <IconFavorite color="yellow" size="25" />
@@ -28,7 +28,7 @@ const ButtonFavorite = (props: Props) => {
           {favItems.length}
         </span>
       </span>
-    </button>
+    </div>
   );
 };
 

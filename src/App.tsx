@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from './pages/Home/Home';
+import Home from './pages/PageHome/PageHome';
 import './scss/app.scss';
 import { Route, Routes } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
-import Favorite from './pages/Favorite/Favorite';
+import Favorite from './pages/PageFavorite/PageFavorite';
 
 function App() {
   return (

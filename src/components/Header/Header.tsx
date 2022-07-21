@@ -7,8 +7,9 @@ import { selectQueryOption } from '../../redux/filter/selectors';
 import { setQueryOption } from '../../redux/filter/slice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import InputRadio from '../UI/InputRadio/InputRadio';
+import IconFavorite from '../UI/Icons/IconFavorite';
 import Logo from '../Logo/Logo';
-import ButtonFavorite from '../ButtonFavorite/ButtonFavorite';
+import ButtonFavorite from '../Favorite/Favorite';
 const options = [
   { name: 'По названию', value: 'intitle' },
   { name: 'По автору', value: 'inauthor' },

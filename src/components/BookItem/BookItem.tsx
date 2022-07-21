@@ -4,7 +4,7 @@ import { addItem, removeItem } from '../../redux/favorite/slice';
 import { TFavoriteBook } from '../../redux/favorite/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { TVolumeInfo } from '../../redux/books/types';
-import Button from '../UI/Button/Button';
+import Button from '../UI/ButtonFavorite/ButtonFavorite';
 import IconFavorite from '../UI/Icons/IconFavorite';
 import s from './BookItem.module.scss';
 
@@ -75,10 +75,6 @@ const BookItem: React.FC<BookItemProps> = ({ volumeInfo, id, favorite }) => {
         <Button
           onClick={handleFavoriteClick}
           style={{
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
-            borderRadius: '50%',
             display: hovered ? 'block' : 'none',
             zIndex: 5,
           }}>

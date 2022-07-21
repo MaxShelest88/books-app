@@ -1,3 +1,17 @@
+.favorite {
+	height: 100%;
+}
+.conteiner {
+	display: flex;
+	flex-direction: column;
+}
+
+.decription {
+	text-align: center;
+	font-size: 20px;
+	margin: 0px 0px 20px 0px;
+}
+
 .items {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(180px, 180px));

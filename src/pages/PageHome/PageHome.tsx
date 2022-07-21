@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import s from './Home.module.scss';
+import s from './PageHome.module.scss';
 import Pagination from '../../components/UI/Pagination/Pagination';
 import { selectBooks } from '../../redux/books/selectors';
 import { fetchBooks } from '../../redux/books/asyncactions';

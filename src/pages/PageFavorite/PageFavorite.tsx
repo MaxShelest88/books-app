@@ -1,10 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import BookItem from '../../components/BookItem/BookItem';
+import Button from '../../components/UI/Button/Button';
 import { selectFavoriteBooks } from '../../redux/favorite/selectors';
 import { TFavoriteBook } from '../../redux/favorite/types';
 import { useAppSelector } from '../../redux/hooks';
-import s from './Favorite.module.scss';
+import s from './PageFavorite.module.scss';
 
 function Favorite() {
   const items = useAppSelector(selectFavoriteBooks);
@@ -15,8 +16,8 @@ function Favorite() {
   }, [items]);
 
   return (
-    <section className="books">
-      <div className="books__container container">
+    <div className={s.favorite}>
+      <div className={`${s.conteiner} container`}>
         {items.length > 0 ? (
           <>
             <div className={s.title}>Избранные книги</div>
@@ -27,10 +28,13 @@ function Favorite() {
             </div>
           </>
         ) : (
-          <div>Пока что избранных книг нет...</div>
+          <h2 className={s.decription}>Пока что избранных книг нет...</h2>
         )}
+        <Link to="/" style={{ alignSelf: 'center' }}>
+          <Button>Вернуться на главную</Button>
+        </Link>
       </div>
-    </section>
+    </div>
   );
 }
 

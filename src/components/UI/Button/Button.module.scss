@@ -1,11 +1,18 @@
- @import "../../../scss/variables";
- 
- .button {
-	 color: black;
-	 font-size: 14px;
-	 background: transparent;
-	 cursor: pointer;
-	 line-height: 20px;
-	 display: flex;
-	 justify-content:center;align-items: center;
- }
+@import "../../../scss/_variables.scss";
+
+.button {
+	display: inline-flex;
+	padding: 0 46px;
+	min-height: 50px;
+	justify-content: center;
+	align-items: center;
+	background: lightblue;
+	color: #fff;
+	transition: background 0.3s ease 0s;
+	font-size: 18px;
+	@media (any-hover: hover) {
+		&:hover {
+			background: blue;
+		}
+	}
+}
