@@ -4,7 +4,7 @@ import { addItem, removeItem } from '../../redux/favorite/slice';
 import { TFavoriteBook } from '../../redux/favorite/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { TVolumeInfo } from '../../redux/books/types';
-import Button from '../UI/ButtonFavorite/ButtonFavorite';
+import ButtonFavorite from '../UI/ButtonFavorite/ButtonFavorite';
 import IconFavorite from '../UI/Icons/IconFavorite';
 import s from './BookItem.module.scss';
 
@@ -72,7 +72,7 @@ const BookItem: React.FC<BookItemProps> = ({ volumeInfo, id, favorite }) => {
     <div className={s.item} onMouseOver={handleHover} onMouseLeave={handleLeave}>
       <div className={s.image}>
         <img src={imageLinks ? imageLinks?.thumbnail : noCoverImage} alt="" />
-        <Button
+        <ButtonFavorite
           onClick={handleFavoriteClick}
           style={{
             display: hovered ? 'block' : 'none',
@@ -82,7 +82,7 @@ const BookItem: React.FC<BookItemProps> = ({ volumeInfo, id, favorite }) => {
             size="24"
             color={favored || favorite || favoriteBook ? 'yellow' : 'transparent'}
           />
-        </Button>
+        </ButtonFavorite>
         <div className={s.cover}>
           <p>Издательство: {publisher ? publisher : '-'}</p>
           <p>Год издания: {publishedDate ? publishedDate.slice(0, 4) : '-'}</p>
