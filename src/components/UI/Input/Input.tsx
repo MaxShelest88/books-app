@@ -4,6 +4,7 @@ import _debounce from 'lodash/debounce';
 import s from './Input.module.scss';
 import { setSearchValue, setTotalItems } from '../../../redux/books/slice';
 import { selectBooks } from '../../../redux/books/selectors';
+import { setPage } from '../../../redux/filter/slice';
 
 type InputProps = {
   [x: string]: any;
@@ -26,17 +27,18 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
     }
   }, []);
 
-  const handleClear = () => {
+  const handleClear = React.useCallback(() => {
     dispatch(setSearchValue(''));
     setValue('');
     dispatch(setTotalItems(0));
-  };
+  }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     updateSearchValue(e.target.value);
     setValue(e.target.value);
+    dispatch(setPage(0));
     dispatch(setTotalItems(0));
-  };
+  }, []);
 
   return (
     <div className={s.root} {...props}>
