@@ -7,9 +7,9 @@ import { selectQueryOption } from '../../redux/filter/selectors';
 import { setQueryOption } from '../../redux/filter/slice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import InputRadio from '../UI/InputRadio/InputRadio';
-import IconFavorite from '../UI/Icons/IconFavorite';
 import Logo from '../Logo/Logo';
 import ButtonFavorite from '../Favorite/Favorite';
+import { setTotalItems } from '../../redux/books/slice';
 const options = [
   { name: 'По названию', value: 'intitle' },
   { name: 'По автору', value: 'inauthor' },
@@ -20,8 +20,10 @@ export default function Header() {
   const dispatch = useAppDispatch();
   const queryOption = useAppSelector(selectQueryOption);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setQueryOption(e.target.value));
+    dispatch(setTotalItems(0));
+  };
 
   const optionValues = options.map((option, index) => (
     <InputRadio
