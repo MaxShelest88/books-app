@@ -26,13 +26,15 @@ const booksSlice = createSlice({
 	  },
 	  setMaxResults(state, action) {
 		  state.maxResults = action.payload
-		}
+	  },
+	  setTotalItems(state, action) {
+		  state.totalItems = action.payload
+	  },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchBooks.pending, (state) => {
       state.status = Status.LOADING
 		 state.items = []
-		 state.totalItems = 0
     });
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
       state.status = Status.SUCCESS
@@ -48,6 +50,6 @@ const booksSlice = createSlice({
   },
 });
 
-export const { setItems, setStatus, setSearchValue, setMaxResults} = booksSlice.actions
+export const { setItems, setStatus, setSearchValue, setMaxResults, setTotalItems} = booksSlice.actions
 
 export default booksSlice.reducer

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import _debounce from 'lodash/debounce';
 import s from './Input.module.scss';
-import { setSearchValue } from '../../../redux/books/slice';
+import { setSearchValue, setTotalItems } from '../../../redux/books/slice';
 import { selectBooks } from '../../../redux/books/selectors';
 
 type InputProps = {
@@ -29,11 +29,13 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
   const handleClear = () => {
     dispatch(setSearchValue(''));
     setValue('');
+    dispatch(setTotalItems(0));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateSearchValue(e.target.value);
     setValue(e.target.value);
+    dispatch(setTotalItems(0));
   };
 
   return (

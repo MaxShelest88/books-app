@@ -10,9 +10,10 @@
 	color: #fff;
 	transition: background 0.3s ease 0s;
 	font-size: 18px;
+	border-radius: 5px;
 	@media (any-hover: hover) {
 		&:hover {
-			background: blue;
+			background: $mainColor;
 		}
 	}
 }
