@@ -45,29 +45,29 @@ const Home: React.FC = () => {
     isMounted.current = true;
   }, [query, maxResults, pageCurrent, queryOption, sort]);
 
-  //   React.useEffect(() => {
-  //     if (window.location.search && !isMounted.current) {
-  //       const colonIndex = search.get('q')?.indexOf(':');
-  //       const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
-  //       const queryOption = String(search.get('q')?.slice(0, colonIndex));
-  //       const startIndex = Number(search.get('startIndex'));
-  //       const maxResults = Number(search.get('maxResults'));
-  //       const sort = String(search.get('orderBy'));
-  //       console.log(maxResults);
-  //       dispatch(
-  //         fetchBooks({
-  //           searchValue,
-  //           maxResults,
-  //           queryOption,
-  //           sort,
-  //         }),
-  //       );
-  //       dispatch(setSort(sort));
-  //       dispatch(setSearchValue(searchValue));
-  //       dispatch(setPage(startIndex / maxResults));
-  //       dispatch(setMaxResults(maxResults));
-  //     }
-  //   }, []);
+    React.useEffect(() => {
+      if (window.location.search && !isMounted.current) {
+        const colonIndex = search.get('q')?.indexOf(':');
+        const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
+        const queryOption = String(search.get('q')?.slice(0, colonIndex));
+        const startIndex = Number(search.get('startIndex'));
+        const maxResults = Number(search.get('maxResults'));
+        const sort = String(search.get('orderBy'));
+        console.log(maxResults);
+        dispatch(
+          fetchBooks({
+            searchValue,
+            maxResults,
+            queryOption,
+            sort,
+          }),
+        );
+        dispatch(setSort(sort));
+        dispatch(setSearchValue(searchValue));
+        dispatch(setPage(startIndex / maxResults));
+        dispatch(setMaxResults(maxResults));
+      }
+    }, []);
 
   const onPageChange = React.useCallback((number: number) => {
     dispatch(setPage(number));
