@@ -1,12 +1,12 @@
 import React from 'react';
 import s from './ButtonFavorite.module.scss';
 
-type ButtonProps = {
+type ButtonFavoriteProps = {
   children: React.ReactNode;
   [x: string]: any;
 };
 
-const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+const ButtonFavorite: React.FC<ButtonFavoriteProps> = ({ children, ...props }) => {
   return (
     <button {...props} className={s.buttonFav}>
       {children}
@@ -14,4 +14,4 @@ const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
   );
 };
 
-export default Button;
+export default ButtonFavorite;

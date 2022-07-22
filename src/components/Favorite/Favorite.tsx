@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { selectFavoriteBooks } from '../../redux/favorite/selectors';
 import { useAppSelector } from '../../redux/hooks';
 import IconFavorite from '../UI/Icons/IconFavorite';
 import s from './Favorite.module.scss';
 
-type Props = {};
+const Favorite: FC = () => {
 
-const ButtonFavorite = (props: Props) => {
   const favItems = useAppSelector(selectFavoriteBooks);
 
   return (
@@ -32,4 +31,4 @@ const ButtonFavorite = (props: Props) => {
   );
 };
 
-export default ButtonFavorite;
+export default Favorite;

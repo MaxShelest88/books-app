@@ -10,6 +10,7 @@ import BookItems from '../../components/BookItems/BookItems';
 import { useSearchParams } from 'react-router-dom';
 import { setMaxResults, setSearchValue, setTotalItems } from '../../redux/books/slice';
 import NotFound from '../../components/NotFound/NotFound';
+import { selectFavoriteBooks } from '../../redux/favorite/selectors';
 
 /* 
 TODO:
@@ -31,6 +32,7 @@ const Home: React.FC = () => {
   const sort = useAppSelector(selectSort);
   const [search, setSearch] = useSearchParams();
   const isMounted = React.useRef(false);
+  const favItems = useAppSelector(selectFavoriteBooks);
 
   React.useEffect(() => {
     if (query && isMounted.current) {

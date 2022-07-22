@@ -8,7 +8,7 @@ import { setQueryOption } from '../../redux/filter/slice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import InputRadio from '../UI/InputRadio/InputRadio';
 import Logo from '../Logo/Logo';
-import ButtonFavorite from '../Favorite/Favorite';
+import Favorite from '../Favorite/Favorite';
 import { setTotalItems } from '../../redux/books/slice';
 import Button from '../UI/Button/Button';
 import { fetchBooks } from '../../redux/books/asyncactions';
@@ -88,7 +88,7 @@ export default function Header() {
             )}
           </div>
           <Link className="" to="/favorite">
-            <ButtonFavorite />
+            <Favorite />
           </Link>
         </div>
         <div className={s.buttom}>{pathname !== '/favorite' && <>{optionValues}</>}</div>

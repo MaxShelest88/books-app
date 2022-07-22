@@ -5,7 +5,6 @@ export type TImageLinks = {
 
 export type TVolumeInfo = {
   authors: string[];
-  averageRating: number;
   categories: string[];
   imageLinks: TImageLinks;
   language: string;

@@ -2,7 +2,6 @@ import { TImageLinks } from "../books/types";
 
 export type TFavoriteBook = {
   authors: string[];
-  averageRating: number;
   categories: string[];
   imageLinks: TImageLinks;
   language: string;

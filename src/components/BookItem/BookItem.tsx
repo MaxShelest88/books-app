@@ -30,7 +30,6 @@ const BookItem: React.FC<BookItemProps> = ({ volumeInfo, id, favorite }) => {
 
   const {
     authors,
-    averageRating,
     categories,
     imageLinks,
     language,
@@ -46,7 +45,6 @@ const BookItem: React.FC<BookItemProps> = ({ volumeInfo, id, favorite }) => {
   const handleFavoriteClick = () => {
     const item = {
       authors,
-      averageRating,
       categories,
       imageLinks,
       language,
