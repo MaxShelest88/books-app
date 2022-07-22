@@ -20,6 +20,7 @@ TODO:
 16. eslint
 17. компонент не найдено
 18. Оптимизация memo
+19. хук useFetch
 */
 
 const Home: React.FC = () => {
@@ -31,19 +32,19 @@ const Home: React.FC = () => {
   const [search, setSearch] = useSearchParams();
   const isMounted = React.useRef(false);
 
-  //   React.useEffect(() => {
-  //     if (query && isMounted.current) {
-  //       dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
-  //       setSearch({
-  //         q: `${queryOption}:${query}`,
-  //         startIndex: String(pageCurrent * maxResults),
-  //         maxResults: String(maxResults),
-  //         printType: 'books',
-  //         orderBy: sort,
-  //       });
-  //     }
-  //     isMounted.current = true;
-  //   }, []);
+  React.useEffect(() => {
+    if (query && isMounted.current) {
+      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
+      setSearch({
+        q: `${queryOption}:${query}`,
+        startIndex: String(pageCurrent * maxResults),
+        maxResults: String(maxResults),
+        printType: 'books',
+        orderBy: sort,
+      });
+    }
+    isMounted.current = true;
+  }, [pageCurrent, maxResults, sort]);
 
   React.useEffect(() => {
     if (window.location.search) {
