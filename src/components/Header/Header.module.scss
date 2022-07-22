@@ -1,14 +1,10 @@
-
 .header {
 	.container {
-		padding-top: 50px;
+		padding-top: 20px;
 		min-height: 100px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		@media (max-width: 768px) {
-			flex-direction: column;
-		}
 	}
 }
 .top {
@@ -16,6 +12,9 @@
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 20px;
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 }
 
 .buttom {
