@@ -7,6 +7,7 @@ import { TVolumeInfo } from '../../redux/books/types';
 import ButtonFavorite from '../UI/ButtonFavorite/ButtonFavorite';
 import IconFavorite from '../UI/Icons/IconFavorite';
 import s from './BookItem.module.scss';
+import { Link } from 'react-router-dom';
 
 const noCoverImage = 'https://books.google.ru/googlebooks/images/no_cover_thumb.gif';
 
@@ -83,12 +84,14 @@ const BookItem: React.FC<BookItemProps> = ({ volumeInfo, id, favorite }) => {
             color={favored || favorite || favoriteBook ? 'yellow' : 'transparent'}
           />
         </ButtonFavorite>
-        <div className={s.cover}>
-          <p>Издательство: {publisher ? publisher : '-'}</p>
-          <p>Год издания: {publishedDate ? publishedDate.slice(0, 4) : '-'}</p>
-          <p>Жанры: {categories ? categories.join(',') : '-'}</p>
-          <p>Количество страниц: {pageCount ? pageCount : '-'}</p>
-        </div>
+        <Link to={`/book/${id}`}>
+          <div className={s.cover}>
+            <p>Издательство: {publisher ? publisher : '-'}</p>
+            <p>Год издания: {publishedDate ? publishedDate.slice(0, 4) : '-'}</p>
+            <p>Жанры: {categories ? categories.join(',') : '-'}</p>
+            <p>Количество страниц: {pageCount ? pageCount : '-'}</p>
+          </div>
+        </Link>
       </div>
       <div className={s.authors}>{authors?.join(' ')}</div>
       <div className={s.title}>{title}</div>

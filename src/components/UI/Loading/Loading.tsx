@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Loading.module.scss';
 
-function PageLoading() {
+function Loading() {
   return (
     <div className={s.root}>
       <div className={s.spinner}>
@@ -22,4 +22,4 @@ function PageLoading() {
   );
 }
 
-export default PageLoading;
+export default Loading;
