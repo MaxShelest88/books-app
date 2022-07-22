@@ -14,8 +14,6 @@ import { selectFavoriteBooks } from '../../redux/favorite/selectors';
 
 /* 
 TODO:
-2.Клик по книге - полное описание. 
-7.Переделать хедер на грид 
 13. Чанки
 15. storybook
 16. eslint
