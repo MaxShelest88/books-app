@@ -1,15 +1,35 @@
-@import "../../scss/variables";
 
 .header {
 	.container {
+		padding-top: 50px;
 		min-height: 100px;
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		flex-direction: column;
+		justify-content: center;
 		@media (max-width: 768px) {
 			flex-direction: column;
 		}
 	}
 }
+.top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
 
+.buttom {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
+.form {
+	flex: 1 1 auto;
+}
+
+.formLine {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

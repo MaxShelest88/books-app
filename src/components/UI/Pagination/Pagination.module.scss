@@ -16,12 +16,12 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			border: 1px solid $mainColor;
+			border: 1px solid lightblue;
 			border-radius: 2px;
 			transition: background 0.3s ease 0s;
 			@media (any-hover: hover) {
 			&:hover {
-				background: $mainColor;
+				background: $lightBlue;
 			}
 		}
 		}
@@ -33,7 +33,7 @@
 
 		.selected {
 			a {
-				background-color: $mainColor;
+				background-color: $lightBlue;
 				color: #fff;
 			}
 		}

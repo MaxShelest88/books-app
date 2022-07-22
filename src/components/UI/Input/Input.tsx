@@ -25,7 +25,7 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
     if (query) {
       setValue(query);
     }
-  }, []);
+  }, [query]);
 
   const handleClear = React.useCallback(() => {
     dispatch(setSearchValue(''));
@@ -40,7 +40,7 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
   }, []);
 
   return (
-    <div className={s.root} {...props}>
+    <div className={s.root}>
       <svg
         className={s.icon}
         enableBackground="new 0 0 32 32"
@@ -54,6 +54,7 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
         />
       </svg>
       <input
+        {...props}
         ref={inpRef}
         value={value}
         onChange={handleChange}

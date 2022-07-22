@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Input from '../UI/Input/Input';
 import s from './Header.module.scss';
 import { useLocation } from 'react-router-dom';
-import { selectQueryOption } from '../../redux/filter/selectors';
+import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
 import { setQueryOption } from '../../redux/filter/slice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import InputRadio from '../UI/InputRadio/InputRadio';
 import Logo from '../Logo/Logo';
 import ButtonFavorite from '../Favorite/Favorite';
 import { setTotalItems } from '../../redux/books/slice';
+import Button from '../UI/Button/Button';
+import { fetchBooks } from '../../redux/books/asyncactions';
+import { selectBooks } from '../../redux/books/selectors';
 const options = [
   { name: 'По названию', value: 'intitle' },
   { name: 'По автору', value: 'inauthor' },
@@ -19,10 +22,43 @@ export default function Header() {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
   const queryOption = useAppSelector(selectQueryOption);
+  const { query, maxResults } = useAppSelector(selectBooks);
+  const pageCurrent = useAppSelector(selectCurrentPage);
+  const sort = useAppSelector(selectSort);
+  const [search, setSearch] = useSearchParams();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setQueryOption(e.target.value));
     dispatch(setTotalItems(0));
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    if (query) {
+      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
+      setSearch({
+        q: `${queryOption}:${query}`,
+        startIndex: String(pageCurrent * maxResults),
+        maxResults: String(maxResults),
+        printType: 'books',
+        orderBy: sort,
+      });
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      if (query) {
+        dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
+        setSearch({
+          q: `${queryOption}:${query}`,
+          startIndex: String(pageCurrent * maxResults),
+          maxResults: String(maxResults),
+          printType: 'books',
+          orderBy: sort,
+        });
+      }
+    }
   };
 
   const optionValues = options.map((option, index) => (
@@ -39,20 +75,21 @@ export default function Header() {
   return (
     <header className={s.header}>
       <div className={`${s.container} container`}>
-        <Link to="/">
-          <Logo />
-        </Link>
-        {pathname !== '/favorite' && (
-          <>
-            <form>
-              <Input style={{ marginBottom: '10px' }} />
-              {optionValues}
-            </form>
-            <Link className="" to="/favorite">
-              <ButtonFavorite />
-            </Link>
-          </>
-        )}
+        <div className={s.top}>
+          <Link to="/">
+            <Logo />
+          </Link>
+          <div className={s.form}>
+            <div className={s.formLine}>
+              <Input onKeyPress={handleKeyDown} />
+              <Button onClick={handleClick}>Поиск</Button>
+            </div>
+          </div>
+          <Link className="" to="/favorite">
+            <ButtonFavorite />
+          </Link>
+        </div>
+        <div className={s.buttom}>{pathname !== '/favorite' && <>{optionValues}</>}</div>
       </div>
     </header>
   );

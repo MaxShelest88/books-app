@@ -31,19 +31,19 @@ const Home: React.FC = () => {
   const [search, setSearch] = useSearchParams();
   const isMounted = React.useRef(false);
 
-  React.useEffect(() => {
-    if (query && isMounted.current) {
-      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
-      setSearch({
-        q: `${queryOption}:${query}`,
-        startIndex: String(pageCurrent * maxResults),
-        maxResults: String(maxResults),
-        printType: 'books',
-        orderBy: sort,
-      });
-    }
-    isMounted.current = true;
-  }, [query, maxResults, pageCurrent, queryOption, sort]);
+//   React.useEffect(() => {
+//     if (query && isMounted.current) {
+//       dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
+//       setSearch({
+//         q: `${queryOption}:${query}`,
+//         startIndex: String(pageCurrent * maxResults),
+//         maxResults: String(maxResults),
+//         printType: 'books',
+//         orderBy: sort,
+//       });
+//     }
+//     isMounted.current = true;
+//   }, []);
 
   React.useEffect(() => {
     if (window.location.search) {
