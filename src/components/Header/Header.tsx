@@ -80,10 +80,12 @@ export default function Header() {
             <Logo />
           </Link>
           <div className={s.form}>
-            <div className={s.formLine}>
-              <Input onKeyPress={handleKeyDown} />
-              <Button onClick={handleClick}>Поиск</Button>
-            </div>
+            {pathname !== '/favorite' && (
+              <div className={s.formLine}>
+                <Input onKeyPress={handleKeyDown} />
+                <Button onClick={handleClick}>Поиск</Button>
+              </div>
+            )}
           </div>
           <Link className="" to="/favorite">
             <ButtonFavorite />

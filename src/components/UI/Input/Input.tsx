@@ -14,8 +14,8 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
   const [value, setValue] = React.useState<string>('');
   const { query } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
-  const inpRef = useRef<HTMLInputElement>(null);
-
+	const inpRef = useRef<HTMLInputElement>(null);
+	
   const updateSearchValue = React.useCallback(
     _debounce((str) => dispatch(setSearchValue(str)), 200),
     [],
@@ -25,6 +25,7 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
     if (query) {
       setValue(query);
     }
+    inpRef.current?.focus();
   }, [query]);
 
   const handleClear = React.useCallback(() => {
@@ -60,7 +61,7 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
         onChange={handleChange}
         className={s.input}
         type="text"
-        placeholder="Поиск книги"
+        placeholder={'Поиск книги'}
       />
       {value && (
         <svg

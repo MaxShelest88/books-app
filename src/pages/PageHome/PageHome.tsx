@@ -31,30 +31,28 @@ const Home: React.FC = () => {
   const [search, setSearch] = useSearchParams();
   const isMounted = React.useRef(false);
 
-//   React.useEffect(() => {
-//     if (query && isMounted.current) {
-//       dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
-//       setSearch({
-//         q: `${queryOption}:${query}`,
-//         startIndex: String(pageCurrent * maxResults),
-//         maxResults: String(maxResults),
-//         printType: 'books',
-//         orderBy: sort,
-//       });
-//     }
-//     isMounted.current = true;
-//   }, []);
+  //   React.useEffect(() => {
+  //     if (query && isMounted.current) {
+  //       dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
+  //       setSearch({
+  //         q: `${queryOption}:${query}`,
+  //         startIndex: String(pageCurrent * maxResults),
+  //         maxResults: String(maxResults),
+  //         printType: 'books',
+  //         orderBy: sort,
+  //       });
+  //     }
+  //     isMounted.current = true;
+  //   }, []);
 
   React.useEffect(() => {
     if (window.location.search) {
-      console.log(window.location.search);
       const colonIndex = search.get('q')?.indexOf(':');
       const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
       const queryOption = String(search.get('q')?.slice(0, colonIndex));
       const startIndex = Number(search.get('startIndex'));
       const maxResults = Number(search.get('maxResults'));
       const sort = String(search.get('orderBy'));
-      console.log(maxResults);
       dispatch(
         fetchBooks({
           searchValue,
