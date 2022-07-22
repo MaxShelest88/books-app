@@ -8,16 +8,14 @@ import { setPage, setSort } from '../../redux/filter/slice';
 import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
 import BookItems from '../../components/BookItems/BookItems';
 import { useSearchParams } from 'react-router-dom';
-import { setMaxResults, setSearchValue, setTotalItems } from '../../redux/books/slice';
+import { setMaxResults, setSearchValue } from '../../redux/books/slice';
 import NotFound from '../../components/NotFound/NotFound';
-import { selectFavoriteBooks } from '../../redux/favorite/selectors';
 
 /* 
 TODO:
 13. Чанки
 15. storybook
 16. eslint
-17. компонент не найдено
 18. Оптимизация memo
 19. хук useFetch
 */
