@@ -32,7 +32,6 @@ const Home: React.FC = () => {
   const sort = useAppSelector(selectSort);
   const [search, setSearch] = useSearchParams();
   const isMounted = React.useRef(false);
-  const favItems = useAppSelector(selectFavoriteBooks);
 
   React.useEffect(() => {
     if (query && isMounted.current) {

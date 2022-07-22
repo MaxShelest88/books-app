@@ -39,6 +39,25 @@
 	margin-bottom: 10px;
 }
 .publisher {
+	margin-bottom: 10px;
 }
 .date {
+	margin-bottom: 10px;
+}
+
+.ganre{
+	margin-bottom: 10px;
+}
+
+.pageCount {
+	margin-bottom: 10px;
+}
+
+.description {
+	p {
+		&:first-child {
+			font-weight: 600;
+		}
+		margin-bottom: 10px;
+	}
 }

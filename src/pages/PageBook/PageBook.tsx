@@ -40,10 +40,8 @@ const PageBook: FC = () => {
       imageLinks: book?.imageLinks,
       language: book?.language,
       pageCount: book?.pageCount,
-      printType: book?.printType,
       publishedDate: book?.publishedDate,
       publisher: book?.publisher,
-      subtitle: book?.subtitle,
       title: book?.title,
       description: book?.description,
       id: id,
@@ -66,16 +64,18 @@ const PageBook: FC = () => {
         <div className={s.content}>
           <div className={s.info}>
             <h2 className={s.title}>{book.title}</h2>
-            <div className={s.authors}>{book.authors ? book.authors?.join(' ') : ''}</div>
+            <div className={s.authors}>Автор: {book.authors ? book.authors?.join(' ') : ''}</div>
+            <div className={s.ganre}>Жанр: {book.categories}</div>
             <div className={s.publisher}>Издательство: {book.publisher}</div>
             <div className={s.date}>Год публикации: {book.publishedDate?.slice(0, 4)}</div>
+            <div className={s.pageCount}>Количество страниц: {book.pageCount}</div>
             <div className={s.description}>
-              Описание:
+              <p>Описание:</p>
               <p>{book.description}</p>
             </div>
           </div>
           <div className={s.controls}>
-            <Link to="/">
+            <Link to="/" style={{ marginRight: '20px' }}>
               <Button>Вернуться на главную</Button>
             </Link>
             <Button onClick={handleClick}>
