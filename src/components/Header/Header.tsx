@@ -83,7 +83,9 @@ export default function Header() {
             {pathname !== '/favorite' && (
               <div className={s.formLine}>
                 <Input onKeyPress={handleKeyDown} />
-                <Button onClick={handleClick}>Поиск</Button>
+                <Button onClick={handleClick} style={{ marginLeft: '5px' }}>
+                  Поиск
+                </Button>
               </div>
             )}
           </div>
