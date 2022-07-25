@@ -4,7 +4,7 @@ import Input from '../UI/Input/Input';
 import s from './Header.module.scss';
 import { useLocation } from 'react-router-dom';
 import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
-import { setQueryOption } from '../../redux/filter/slice';
+import { setPage, setQueryOption } from '../../redux/filter/slice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import InputRadio from '../UI/InputRadio/InputRadio';
 import Logo from '../Logo/Logo';
@@ -26,19 +26,19 @@ const Header: React.FC = () => {
   const { query, maxResults } = useAppSelector(selectBooks);
   const pageCurrent = useAppSelector(selectCurrentPage);
   const sort = useAppSelector(selectSort);
-  const [search, setSearch] = useSearchParams();
+  const fetchAndSearchParams = useFetchAndSearchParams();
+  const [value, setValue] = React.useState<string>('');
 
   const onChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setQueryOption(e.target.value));
     dispatch(setTotalItems(0));
   }, []);
 
-  const fetchAndSearchParams = useFetchAndSearchParams();
-
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if (query) {
       fetchAndSearchParams({ query, maxResults, pageCurrent, queryOption, sort });
+      dispatch(setPage(0));
     }
   };
 
@@ -46,6 +46,7 @@ const Header: React.FC = () => {
     if (e.key === 'Enter') {
       if (query) {
         fetchAndSearchParams({ query, maxResults, pageCurrent, queryOption, sort });
+        dispatch(setPage(0));
       }
     }
   };
@@ -71,7 +72,7 @@ const Header: React.FC = () => {
           <div className={s.form}>
             {pathname !== '/favorite' && (
               <div className={s.formLine}>
-                <Input onKeyPress={handleKeyDown} />
+                <Input query={query} onKeyPress={handleKeyDown} />
                 <Button onClick={handleClick} style={{ marginLeft: '5px' }}>
                   Поиск
                 </Button>

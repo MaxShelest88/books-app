@@ -7,15 +7,15 @@ import { selectBooks } from '../../../redux/books/selectors';
 import { setPage } from '../../../redux/filter/slice';
 
 type InputProps = {
+  query: string;
   [x: string]: any;
 };
 
-const Input: React.FC<InputProps> = ({ ...props }) => {
+const Input: React.FC<InputProps> = ({ query, ...props }) => {
   const [value, setValue] = React.useState<string>('');
-  const { query } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
-	const inpRef = useRef<HTMLInputElement>(null);
-	
+  const inpRef = useRef<HTMLInputElement>(null);
+
   const updateSearchValue = React.useCallback(
     _debounce((str) => dispatch(setSearchValue(str)), 200),
     [],
@@ -34,11 +34,10 @@ const Input: React.FC<InputProps> = ({ ...props }) => {
     dispatch(setPage(0));
   }, []);
 
-  const handleChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateSearchValue(e.target.value);
     setValue(e.target.value);
-    dispatch(setPage(0));
-  }, []);
+  };
 
   return (
     <div className={s.root}>
