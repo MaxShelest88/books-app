@@ -19,8 +19,6 @@ const PageBook: FC = () => {
   const favoriteBook = favoriteBooks.find((item: TFavoriteBook) => item.id === id);
   const dispatch = useAppDispatch();
 
-  console.log(favoriteBook);
-
   React.useEffect(() => {
     const getBook = async () => {
       try {

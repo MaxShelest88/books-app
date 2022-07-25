@@ -18,7 +18,7 @@ const options = [
   { name: 'По автору', value: 'inauthor' },
 ];
 
-const Header: React.FC =() => {
+const Header: React.FC = () => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
   const queryOption = useAppSelector(selectQueryOption);
@@ -27,10 +27,10 @@ const Header: React.FC =() => {
   const sort = useAppSelector(selectSort);
   const [search, setSearch] = useSearchParams();
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setQueryOption(e.target.value));
     dispatch(setTotalItems(0));
-  };
+  }, []);
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -99,6 +99,6 @@ const Header: React.FC =() => {
       </div>
     </header>
   );
-}
+};
 
-export default Header
+export default Header;

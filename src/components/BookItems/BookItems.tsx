@@ -22,7 +22,7 @@ const BookItems: React.FC = () => {
   const sortValue = useAppSelector(selectSort);
   const { maxResults } = useAppSelector(selectBooks);
 
-  const handleChangeSport = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeSort = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setSort(e.target.value));
   }, []);
 
@@ -48,7 +48,7 @@ const BookItems: React.FC = () => {
                     { name: 'Релевантности', value: 'relevance' },
                     { name: 'Самые новые', value: 'newest' },
                   ]}
-                  onChange={handleChangeSport}
+                  onChange={handleChangeSort}
                 />
                 <Select
                   value={String(maxResults)}
@@ -77,7 +77,7 @@ const BookItems: React.FC = () => {
                     { name: 'Релевантности', value: 'relevance' },
                     { name: 'Самые новые', value: 'newest' },
                   ]}
-                  onChange={handleChangeSport}
+                  onChange={handleChangeSort}
                 />
                 <Select
                   value={String(maxResults)}
