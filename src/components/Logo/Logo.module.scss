@@ -1,9 +1,12 @@
+@import "../../scss/variables";
+
 .logo {
 	display: flex;
 	align-items: center;
 	span {
-		color: black;
+		color: $lightBlue;
 		font-weight: 700;
+		padding: 0px 0px 0px 5px;
 	}
 }
 

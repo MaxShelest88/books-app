@@ -1,10 +1,13 @@
 .book {
 	padding: 100px 0;
-	display: grid;
-	column-gap: 50px;
-	grid-template-columns: 200px 1fr;
-	grid-template-rows: 1fr;
-	grid-template-areas: "image" "content";
+
+	@media (min-width: 768px) {
+		display: grid;
+		column-gap: 50px;
+		grid-template-columns: 200px 1fr;
+		grid-template-rows: 1fr;
+		grid-template-areas: "image" "content";
+	}
 }
 
 .img {

@@ -13,8 +13,6 @@
 	left: 0;
 	top: 0;
 	visibility: hidden;
-	&:checked + .text:before {
-	}
 	&:checked + .text:after {
 		transform: scale(1);
 	}
