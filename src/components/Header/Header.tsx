@@ -93,7 +93,9 @@ export default function Header() {
             <Favorite />
           </Link>
         </div>
-        <div className={s.buttom}>{pathname !== '/favorite' && <>{optionValues}</>}</div>
+        <div className={s.buttom}>
+          <div className={s.options}>{pathname !== '/favorite' && <>{optionValues}</>}</div>
+        </div>
       </div>
     </header>
   );
