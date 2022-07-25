@@ -10,6 +10,8 @@ import BookItems from '../../components/BookItems/BookItems';
 import { useSearchParams } from 'react-router-dom';
 import { setMaxResults, setSearchValue } from '../../redux/books/slice';
 import NotFound from '../../components/NotFound/NotFound';
+import { useFetchAndSearchParams } from '../../hooks/useFetch';
+import { useGetSearchParams } from '../../hooks/useGetSearchParams';
 
 /* 
 TODO:
@@ -26,44 +28,19 @@ const Home: React.FC = () => {
   const pageCurrent = useAppSelector(selectCurrentPage);
   const queryOption = useAppSelector(selectQueryOption);
   const sort = useAppSelector(selectSort);
-  const [search, setSearch] = useSearchParams();
   const isMounted = React.useRef(false);
+  const fetchAndSearchParams = useFetchAndSearchParams();
+  const getSearchParams = useGetSearchParams();
 
   React.useEffect(() => {
     if (query && isMounted.current) {
-      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
-      setSearch({
-        q: `${queryOption}:${query}`,
-        startIndex: String(pageCurrent * maxResults),
-        maxResults: String(maxResults),
-        printType: 'books',
-        orderBy: sort,
-      });
+      fetchAndSearchParams({ query, maxResults, pageCurrent, queryOption, sort });
     }
     isMounted.current = true;
   }, [pageCurrent, maxResults, sort]);
 
   React.useEffect(() => {
-    if (window.location.search) {
-      const colonIndex = search.get('q')?.indexOf(':');
-      const searchValue = String(search.get('q')?.slice(colonIndex && colonIndex + 1));
-      const queryOption = String(search.get('q')?.slice(0, colonIndex));
-      const startIndex = Number(search.get('startIndex'));
-      const maxResults = Number(search.get('maxResults'));
-      const sort = String(search.get('orderBy'));
-      dispatch(
-        fetchBooks({
-          searchValue,
-          maxResults,
-          queryOption,
-          sort,
-        }),
-      );
-      dispatch(setSort(sort));
-      dispatch(setSearchValue(searchValue));
-      dispatch(setPage(startIndex / maxResults));
-      dispatch(setMaxResults(maxResults));
-    }
+    getSearchParams();
     isMounted.current = true;
   }, []);
 

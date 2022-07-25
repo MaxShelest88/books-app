@@ -48,7 +48,7 @@ export interface ISearchedBooksState {
 }
 
 export type TFetchBooksArgs = {
-	searchValue?: string;
+	query?: string;
 	pageCurrent?: number;
 	maxResults?: number;
 	queryOption?: string;

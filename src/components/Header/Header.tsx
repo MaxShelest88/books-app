@@ -13,6 +13,7 @@ import { setTotalItems } from '../../redux/books/slice';
 import Button from '../UI/Button/Button';
 import { fetchBooks } from '../../redux/books/asyncactions';
 import { selectBooks } from '../../redux/books/selectors';
+import { useFetchAndSearchParams } from '../../hooks/useFetch';
 const options = [
   { name: 'По названию', value: 'intitle' },
   { name: 'По автору', value: 'inauthor' },
@@ -32,31 +33,19 @@ const Header: React.FC = () => {
     dispatch(setTotalItems(0));
   }, []);
 
+  const fetchAndSearchParams = useFetchAndSearchParams();
+
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if (query) {
-      dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
-      setSearch({
-        q: `${queryOption}:${query}`,
-        startIndex: String(pageCurrent * maxResults),
-        maxResults: String(maxResults),
-        printType: 'books',
-        orderBy: sort,
-      });
+      fetchAndSearchParams({ query, maxResults, pageCurrent, queryOption, sort });
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (query) {
-        dispatch(fetchBooks({ searchValue: query, maxResults, pageCurrent, queryOption, sort }));
-        setSearch({
-          q: `${queryOption}:${query}`,
-          startIndex: String(pageCurrent * maxResults),
-          maxResults: String(maxResults),
-          printType: 'books',
-          orderBy: sort,
-        });
+        fetchAndSearchParams({ query, maxResults, pageCurrent, queryOption, sort });
       }
     }
   };
