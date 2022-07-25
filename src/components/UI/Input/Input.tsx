@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { useAppDispatch} from '../../../redux/hooks';
 import _debounce from 'lodash/debounce';
 import s from './Input.module.scss';
-import { setSearchValue, setTotalItems } from '../../../redux/books/slice';
-import { selectBooks } from '../../../redux/books/selectors';
+import { setSearchValue } from '../../../redux/books/slice';
 import { setPage } from '../../../redux/filter/slice';
 
 type InputProps = {
