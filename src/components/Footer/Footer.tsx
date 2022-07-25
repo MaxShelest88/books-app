@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 import s from './Footer.module.scss'
 
-type Props = {}
-
-const Footer = (props: Props) => {
+const Footer: FC = () => {
   return (
 	 <footer className={s.footer}>Maksim Shelest 2022</footer>
   )

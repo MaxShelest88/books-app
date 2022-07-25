@@ -18,7 +18,7 @@ const options = [
   { name: 'По автору', value: 'inauthor' },
 ];
 
-export default function Header() {
+const Header: React.FC =() => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
   const queryOption = useAppSelector(selectQueryOption);
@@ -100,3 +100,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default Header

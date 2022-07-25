@@ -5,7 +5,6 @@ import IconFavorite from '../UI/Icons/IconFavorite';
 import s from './Favorite.module.scss';
 
 const Favorite: FC = () => {
-
   const favItems = useAppSelector(selectFavoriteBooks);
 
   return (
@@ -19,7 +18,7 @@ const Favorite: FC = () => {
             top: '50%',
             left: '50%',
             zIndex: 5,
-            color: 'black',
+            color: '#52b5d6',
             transform: 'translate(-50%,-50%)',
             fontSize: 14,
             fontWeight: 700,

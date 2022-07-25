@@ -1,14 +1,14 @@
 import React from 'react';
 import { TOption } from '../InputRadio/InputRadio';
 
-type Props = {
+type TSelect = {
   options: TOption[];
   value: string;
   defaultValue: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Select = ({ options, value, defaultValue, onChange }: Props) => {
+const Select: React.FC<TSelect> = ({ options, value, defaultValue, onChange }) => {
   const optionValues = options.map((option, index) => (
     <option value={option.value} key={index}>
       {option.name}

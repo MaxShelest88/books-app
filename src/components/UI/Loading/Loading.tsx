@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Loading.module.scss';
 
-function Loading() {
+const Loading: React.FC = () => {
   return (
     <div className={s.root}>
       <div className={s.spinner}>

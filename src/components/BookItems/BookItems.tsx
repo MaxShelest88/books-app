@@ -11,9 +11,8 @@ import BookSkeleton from '../BookItem/BookSkeleton';
 import Select from '../UI/Select/Select';
 import s from './BookItems.module.scss';
 
-type Props = {};
 
-function BookItems({}: Props) {
+const BookItems: React.FC = () => {
   const { items, status } = useAppSelector(selectBooks);
   const uniq = uniqItems(items);
   const books = uniq?.map((item: TSearchedBook) => <BookItem {...item} key={item.id} />);

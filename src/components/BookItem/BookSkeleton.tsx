@@ -3,7 +3,7 @@ import ContentLoader from 'react-content-loader';
 
 type Props = {};
 
-const BookSkeleton = (props: Props) => {
+const BookSkeleton: React.FC = (props: Props) => {
   return (
     <ContentLoader
       speed={2}
