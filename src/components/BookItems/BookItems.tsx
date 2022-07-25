@@ -11,24 +11,29 @@ import BookSkeleton from '../BookItem/BookSkeleton';
 import Select from '../UI/Select/Select';
 import s from './BookItems.module.scss';
 
+type TBookItems = {
+  items: TSearchedBook[];
+};
 
-const BookItems: React.FC = () => {
-  const { items, status } = useAppSelector(selectBooks);
-  const uniq = uniqItems(items);
-  const books = uniq?.map((item: TSearchedBook) => <BookItem {...item} key={item.id} />);
-
-  const skeleton = [...new Array(12)].map((_, i) => <BookSkeleton key={i} />);
+const BookItems: React.FC<TBookItems> = ({ items }) => {
+  const { status } = useAppSelector(selectBooks);
   const dispatch = useAppDispatch();
   const sortValue = useAppSelector(selectSort);
-  const { maxResults } = useAppSelector(selectBooks);
+	const { maxResults } = useAppSelector(selectBooks);
+	
+  const books = React.useMemo(
+    () => uniqItems(items)?.map((item: TSearchedBook) => <BookItem {...item} key={item.id} />),
+    [items],
+  );
+  const skeleton = [...new Array(12)].map((_, i) => <BookSkeleton key={i} />);
 
   const handleChangeSort = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setSort(e.target.value));
   }, []);
 
   const handleChangeMaxResults = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-	  dispatch(setMaxResults(e.target.value));
-	  dispatch(setPage(0))
+    dispatch(setMaxResults(e.target.value));
+    dispatch(setPage(0));
   }, []);
 
   const renderBooks = (status: string) => {
@@ -99,6 +104,6 @@ const BookItems: React.FC = () => {
     }
   };
   return <>{renderBooks(status)}</>;
-}
+};
 
 export default BookItems;

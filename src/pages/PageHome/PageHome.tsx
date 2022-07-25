@@ -52,7 +52,7 @@ const Home: React.FC = () => {
     return (
       <section className="books">
         <div className="books__container container">
-          {items ? <BookItems /> : <NotFound />}
+          {items ? <BookItems items={items} /> : <NotFound />}
           <Pagination onPageChange={onPageChange} pageCount={pageCount} pageCurrent={pageCurrent} />
         </div>
       </section>
