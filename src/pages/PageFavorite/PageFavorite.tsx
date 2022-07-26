@@ -7,7 +7,7 @@ import { TFavoriteBook } from '../../redux/favorite/types';
 import { useAppSelector } from '../../redux/hooks';
 import s from './PageFavorite.module.scss';
 
-function Favorite() {
+const Favorite: React.FC = () => {
   const items = useAppSelector(selectFavoriteBooks);
 
   React.useEffect(() => {
@@ -36,6 +36,6 @@ function Favorite() {
       </div>
     </div>
   );
-}
+};
 
 export default Favorite;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Input from '../UI/Input/Input';
 import s from './Header.module.scss';
 import { useLocation } from 'react-router-dom';
@@ -11,7 +11,6 @@ import Logo from '../Logo/Logo';
 import Favorite from '../Favorite/Favorite';
 import { setTotalItems } from '../../redux/books/slice';
 import Button from '../UI/Button/Button';
-import { fetchBooks } from '../../redux/books/asyncactions';
 import { selectBooks } from '../../redux/books/selectors';
 import { useFetchAndSearchParams } from '../../hooks/useFetch';
 const options = [
@@ -27,7 +26,6 @@ const Header: React.FC = () => {
   const pageCurrent = useAppSelector(selectCurrentPage);
   const sort = useAppSelector(selectSort);
   const fetchAndSearchParams = useFetchAndSearchParams();
-  const [value, setValue] = React.useState<string>('');
 
   const onChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setQueryOption(e.target.value));
