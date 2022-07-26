@@ -5,9 +5,13 @@ import MainLayout from './layouts/MainLayout';
 import PageHome from './pages/PageHome/PageHome';
 import Loading from './components/UI/Loading/Loading';
 
-const PageFavorite = lazy(() => import('./pages/PageFavorite/PageFavorite'));
-const PageBook = lazy(() => import('./pages/PageBook/PageBook'));
-const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
+const PageFavorite = lazy(
+  () => import(/*webpackChunkName: "PageFavorite"*/ './pages/PageFavorite/PageFavorite'),
+);
+const PageBook = lazy(() => import(/*webpackChunkName: "PageBook"*/ './pages/PageBook/PageBook'));
+const PageNotFound = lazy(
+  () => import(/*webpackChunkName: "PageNotFound"*/ './pages/PageNotFound/PageNotFound'),
+);
 
 function App() {
   return (
