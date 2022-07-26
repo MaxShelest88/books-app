@@ -3,10 +3,9 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import s from './PageHome.module.scss';
 import Pagination from '../../components/UI/Pagination/Pagination';
 import { selectBooks } from '../../redux/books/selectors';
-import { setPage} from '../../redux/filter/slice';
+import { setPage } from '../../redux/filter/slice';
 import { selectCurrentPage, selectQueryOption, selectSort } from '../../redux/filter/selectors';
 import BookItems from '../../components/BookItems/BookItems';
-import NotFound from '../../components/NotFound/NotFound';
 import { useFetchAndSearchParams } from '../../hooks/useFetch';
 import { useGetSearchParams } from '../../hooks/useGetSearchParams';
 
@@ -49,7 +48,14 @@ const Home: React.FC = () => {
     return (
       <section className="books">
         <div className="books__container container">
-          {items ? <BookItems items={items} /> : <NotFound />}
+          {items ? (
+            <BookItems items={items} />
+          ) : (
+            <div className={s.body}>
+              <h1 className={s.title}>Книги не найдены</h1>
+              <p className={s.description}>Повторите поиск</p>
+            </div>
+          )}
           <Pagination onPageChange={onPageChange} pageCount={pageCount} pageCurrent={pageCurrent} />
         </div>
       </section>
