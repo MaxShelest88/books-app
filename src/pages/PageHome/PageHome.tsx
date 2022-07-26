@@ -11,11 +11,8 @@ import { useGetSearchParams } from '../../hooks/useGetSearchParams';
 
 /* 
 TODO:
-13. Чанки
 15. storybook
 16. eslint
-18. Оптимизация memo
-19. хук useFetch
 */
 
 const Home: React.FC = () => {
